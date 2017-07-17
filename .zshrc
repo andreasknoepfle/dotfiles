@@ -100,3 +100,5 @@ fgco() {
 . $HOME/.asdf/completions/asdf.bash
 
 eval $(docker-machine env)
+
+export PATH="$HOME/.yarn/bin:$PATH"
