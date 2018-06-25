@@ -68,7 +68,7 @@ ZSH_THEME="ys" #"robbyrussell"
 
 # User configuration
 
-plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast)
+plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn)
 
 # export PATH="/Users/andi/.rvm/gems/ruby-2.2.1/bin:/Users/andi/.rvm/gems/ruby-2.2.1@global/bin:/Users/andi/.rvm/rubies/ruby-2.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/andi/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -99,6 +99,4 @@ fgco() {
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-eval $(docker-machine env)
-
-export PATH="$HOME/.yarn/bin:$PATH"
+export EDITOR='vim'
