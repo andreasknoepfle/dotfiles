@@ -58,6 +58,7 @@ values."
      (org :variables
           org-enable-reveal-js-support t)
      javascript
+     ;; german keyboards
      (osx :variables
           mac-right-option-modifier nil)
      (shell :variables
@@ -328,9 +329,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq-default flycheck-disabled-checkers '(ruby-reek))
-  (setq mac-command-modifier 'meta
-        mac-option-modifier 'none
-        default-input-method "MacOSX")
+  ;(setq mac-command-modifier 'meta
+  ;      mac-option-modifier 'none
+  ;      default-input-method "MacOSX")
   ;; Confirm emacs kill
   (setq confirm-kill-emacs 'y-or-n-p)
   (setq helm-split-window-inside-p t)

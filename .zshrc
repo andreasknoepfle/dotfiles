@@ -5,7 +5,7 @@ export ZSH=/Users/andi/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="ys" #"robbyrussell"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,11 +54,11 @@ ZSH_THEME="ys" #"robbyrussell"
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -68,7 +68,7 @@ ZSH_THEME="ys" #"robbyrussell"
 
 # User configuration
 
-plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn)
+plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn tmux)
 
 # export PATH="/Users/andi/.rvm/gems/ruby-2.2.1/bin:/Users/andi/.rvm/gems/ruby-2.2.1@global/bin:/Users/andi/.rvm/rubies/ruby-2.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/andi/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -83,8 +83,9 @@ source $ZSH/oh-my-zsh.sh
 
 stty icrnl
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # fbr - checkout git branch
 fgco() {
@@ -99,4 +100,3 @@ fgco() {
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-export EDITOR='vim'
