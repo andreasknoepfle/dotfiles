@@ -68,7 +68,7 @@ fi
 
 # User configuration
 
-plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn tmux)
+plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn tmux docker docker-compose)
 
 # export PATH="/Users/andi/.rvm/gems/ruby-2.2.1/bin:/Users/andi/.rvm/gems/ruby-2.2.1@global/bin:/Users/andi/.rvm/rubies/ruby-2.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/andi/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -91,12 +91,15 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 fgco() {
   local branches branch
 	branches=$(git branch -vv) &&
-	branch=$(echo "$branches" | fzf +m) &&
+	branch=$(echo "$branches" | fzf +m --query="$1") &&
     git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
 
-# export PATH=~/.local/bin:$PATH
+
+
 . $HOME/.asdf/asdf.sh
+
 . $HOME/.asdf/completions/asdf.bash
 
+export GPG_TTY=$(tty)

@@ -45,8 +45,8 @@ tmux_conf_new_session_prompt=true
 tmux_conf_theme_24b_colour=false
 
 # window style
-tmux_conf_theme_window_fg='#000000'
-tmux_conf_theme_window_bg='#FFFFFF'
+tmux_conf_theme_window_fg='default'
+tmux_conf_theme_window_bg='#030303'
 
 # highlight focused pane (tmux >= 2.1), possible values are:
 #   - true
@@ -54,8 +54,8 @@ tmux_conf_theme_window_bg='#FFFFFF'
 tmux_conf_theme_highlight_focused_pane=true
 
 # focused pane colours:
-tmux_conf_theme_focused_pane_fg='#000000'
-tmux_conf_theme_focused_pane_bg='#F8F0FC'
+tmux_conf_theme_focused_pane_fg='#ffffff'
+tmux_conf_theme_focused_pane_bg='#121212'
 
 # pane border style, possible values are:
 #   - thin (default)
