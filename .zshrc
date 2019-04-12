@@ -68,7 +68,7 @@ fi
 
 # User configuration
 
-plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn tmux docker docker-compose)
+plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn tmux docker docker-compose gpg-agent asdf)
 
 # export PATH="/Users/andi/.rvm/gems/ruby-2.2.1/bin:/Users/andi/.rvm/gems/ruby-2.2.1@global/bin:/Users/andi/.rvm/rubies/ruby-2.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/andi/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -83,10 +83,6 @@ source $ZSH/oh-my-zsh.sh
 
 stty icrnl
 
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # fbr - checkout git branch
 fgco() {
   local branches branch
@@ -95,11 +91,6 @@ fgco() {
     git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
-
-
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
 export GPG_TTY=$(tty)
+
+export PATH="/usr/local/sbin:$PATH"
