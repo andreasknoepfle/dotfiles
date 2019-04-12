@@ -327,6 +327,36 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (define-minor-mode my-override-mode
+    "Overrides all major and minor mode keys" t)
+
+  (defvar my-override-map (make-sparse-keymap "my-override-map")
+    "Override all major and minor mode keys")
+
+  (add-to-list 'emulation-mode-map-alists
+               `((my-override-mode . ,my-override-map)))
+
+  (define-key my-override-map (kbd "<left>")
+    (lambda ()
+      (interactive)
+      (message "Use Vim keys: h for Left")))
+
+  (define-key my-override-map (kbd "<right>")
+    (lambda ()
+      (interactive)
+      (message "Use Vim keys: l for Right")))
+
+  (define-key my-override-map (kbd "<up>")
+    (lambda ()
+      (interactive)
+      (message "Use Vim keys: k for Up")))
+
+  (define-key my-override-map (kbd "<down>")
+    (lambda ()
+      (interactive)
+      (message "Use Vim keys: j for Down")))
+  (evil-make-intercept-map my-override-map)
+
   (add-to-list 'auto-mode-alist '("\\.apib\\'" . apib-mode))
   )
 
