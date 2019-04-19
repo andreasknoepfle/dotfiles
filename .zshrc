@@ -94,3 +94,5 @@ fgco() {
 export GPG_TTY=$(tty)
 
 export PATH="/usr/local/sbin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
