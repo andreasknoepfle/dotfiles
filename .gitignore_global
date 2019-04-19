@@ -1,0 +1,4 @@
+# Set me up with 
+# git config --global core.excludesfile ~/path/to/me/.gitignore_global
+TAGS
+.DS_Store
