@@ -61,8 +61,7 @@ values."
      github
      markdown
      html
-     (org :variables
-          org-enable-reveal-js-support t)
+     org
      javascript
      ;; german keyboards
      ;;(osx :variables
