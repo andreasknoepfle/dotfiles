@@ -29,6 +29,7 @@ brew "git"
 brew "pinentry"
 brew "pinentry-mac"
 brew "zsh"
+brew "task"
 
 
 # cask

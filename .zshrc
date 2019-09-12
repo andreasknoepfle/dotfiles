@@ -7,6 +7,8 @@ export ZSH=/Users/andi/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
+export LC_ALL=en_US.UTF-8
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -93,6 +95,6 @@ fgco() {
 
 export GPG_TTY=$(tty)
 
-export PATH="/usr/local/sbin:$PATH"
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
