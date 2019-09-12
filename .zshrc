@@ -93,8 +93,11 @@ fgco() {
     git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
+# Git commit signing
 export GPG_TTY=$(tty)
 
-export ERL_AFLAGS="-kernel shell_history enabled"
-
+# FZF Shell integartion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Erlang history
+export ERL_AFLAGS="-kernel shell_history enabled"
