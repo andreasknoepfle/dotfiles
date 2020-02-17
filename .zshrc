@@ -101,3 +101,6 @@ export GPG_TTY=$(tty)
 
 # Erlang history
 export ERL_AFLAGS="-kernel shell_history enabled"
+export ERL_EPMD_ADDRESS=127.0.0.1
+
+# Elixir ls
