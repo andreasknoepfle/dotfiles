@@ -31,6 +31,8 @@ brew "pinentry-mac"
 brew "zsh"
 brew "task"
 
+tap "d12frosted/emacs-plus"
+brew "emacs-plus"
 
 # cask
 tap "homebrew/cask"
@@ -38,4 +40,3 @@ cask "karabiner-elements"
 cask "spectacle"
 cask "1Password"
 cask "Dashlane"
-cask "emacs"
