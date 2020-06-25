@@ -65,3 +65,8 @@
 
 ;; start maximized
 (add-hook 'window-setup-hook #'toggle-frame-maximized)
+
+;; tab width
+(setq tab-width 2)
+
+(setq projectile-create-missing-test-files t)

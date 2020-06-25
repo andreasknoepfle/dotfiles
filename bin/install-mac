@@ -34,5 +34,6 @@ ln -fs $DOTFILES_ROOT/.doom.d ~/.doom.d
 ln -fs $DOTFILES_ROOT/.zshrc ~/.zshrc
 ln -fs $DOTFILES_ROOT/.zshenv ~/.zshenv
 ln -fs $DOTFILES_ROOT/.tmux.conf.local ~/.tmux.conf.local
+ln -fs $DOTFILES_ROOT/.default-gems ~/.default-gems
 
 echo "Done"
