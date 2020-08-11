@@ -103,4 +103,5 @@ export GPG_TTY=$(tty)
 export ERL_AFLAGS="-kernel shell_history enabled"
 export ERL_EPMD_ADDRESS=127.0.0.1
 
-# Elixir ls
+# kerl options for asdf erlang
+export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl)"

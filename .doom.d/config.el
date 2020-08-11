@@ -69,4 +69,88 @@
 ;; tab width
 (setq tab-width 2)
 
-(setq projectile-create-missing-test-files t)
+(after! projectile
+  (setq projectile-create-missing-test-files t)
+
+  ;; Ruby
+  (projectile-register-project-type 'ruby-rspec '("Gemfile" "lib" "spec")
+                                    :project-file "Gemfile"
+                                    :compile "bundle exec rake"
+                                    :src-dir "lib/"
+                                    :test "bundle exec rspec"
+                                    :test-dir "spec/"
+                                    :test-suffix "_spec")
+
+  (projectile-register-project-type 'ruby-test '("Gemfile" "lib" "test")
+                                    :project-file "Gemfile"
+                                    :compile "bundle exec rake"
+                                    :src-dir "lib/"
+                                    :test "bundle exec rake test"
+                                    :test-suffix "_test")
+
+  (projectile-register-project-type 'rails-test '("Gemfile" "app" "lib" "db" "config" "test")
+                                    :project-file "Gemfile"
+                                    :compile "bundle exec rails server"
+                                    :src-dir "app/"
+                                    :test "bundle exec rake test"
+                                    :test-suffix "_test")
+
+  (projectile-register-project-type 'rails-rspec '("Gemfile" "app" "lib" "db" "config" "spec")
+                                    :project-file "Gemfile"
+                                    :compile "bundle exec rails server"
+                                    :src-dir "app/"
+                                    :test "bundle exec rspec"
+                                    :test-dir "spec/"
+                                    :test-suffix "_spec"))
+
+
+;; Enable format and iex reload on save
+(after! lsp
+  (add-hook 'elixir-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'elixir-format nil t))))
+              ;;(add-hook 'after-save-hook 'alchemist-iex-reload-module))))
+
+;; Setup some keybindings for exunit and lsp-ui
+(map! :mode elixir-mode
+      :localleader
+        :desc "LSP Menu"            :nve "/"  #'lsp-ui-imenu
+        :desc "Run all tests"       :nve "tt" #'exunit-verify-all
+        :desc "Run all in umbrella" :nve "tT" #'exunit-verify-all-in-umbrella
+        :desc "Re-run tests"        :nve "tx" #'exunit-rerun
+        :desc "Run single test"     :nve "ts" #'exunit-verify-single)
+
+(after! projectile
+  (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
+
+; Enable emojis
+(after! emojify
+  (add-hook 'after-init-hook #'global-emojify-mode))
+
+; Proper indents in web mode
+(after! web-mode
+ (setq web-mode-markup-indent-offset 2
+       web-mode-css-indent-offset 2
+       web-mode-code-indent-offset 2))
+
+
+; Get Nice diffs for dooms example config files
+(defun doom/ediff-init-and-example ()
+  "ediff the current `init.el' with the example in doom-emacs-dir"
+  (interactive)
+  (ediff-files (concat doom-private-dir "init.el")
+               (concat doom-emacs-dir "init.example.el")))
+
+(define-key! help-map
+  "di"   #'doom/ediff-init-and-example
+  )
+
+(defun doom/ediff-config-and-example ()
+  "ediff the current `config.el' with the example in doom-emacs-dir"
+  (interactive)
+  (ediff-files (concat doom-private-dir "config.el")
+               (concat doom-emacs-dir "core/templates/config.example.el")))
+
+(define-key! help-map
+  "dc"   #'doom/ediff-config-and-example
+  )
