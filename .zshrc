@@ -72,9 +72,6 @@ fi
 
 plugins=(git bundler osx ruby gem git-extras history history-substring-search brew rake-fast yarn tmux docker docker-compose gpg-agent asdf)
 
-# export PATH="/Users/andi/.rvm/gems/ruby-2.2.1/bin:/Users/andi/.rvm/gems/ruby-2.2.1@global/bin:/Users/andi/.rvm/rubies/ruby-2.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/andi/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

@@ -16,8 +16,8 @@ echo "Installing .tmux"
 # install .tmux
 if [ ! -d ~/.tmux ]; then
   git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+  ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 fi
-ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 
 echo "Configuring git"
 
@@ -36,5 +36,9 @@ ln -fs $DOTFILES_ROOT/.zshenv ~/.zshenv
 ln -fs $DOTFILES_ROOT/.tmux.conf.local ~/.tmux.conf.local
 ln -fs $DOTFILES_ROOT/.default-gems ~/.default-gems
 ln -fs $DOTFILES_ROOT/.editorconfig ~/.editorconfig
+
+echo "Elixir LS"
+mkdir -p ~/bin
+(cd ~/bin && wget https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip && unzip elixir-ls.zip -d elixir-ls)
 
 echo "Done"

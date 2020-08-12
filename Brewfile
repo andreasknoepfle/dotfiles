@@ -40,3 +40,6 @@ cask "karabiner-elements"
 cask "spectacle"
 cask "1Password"
 cask "Dashlane"
+
+tap "homebrew/cask-fonts"
+cask "font-fira-code"

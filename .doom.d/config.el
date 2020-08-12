@@ -19,12 +19,12 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 16))
+(setq doom-font (font-spec :family "Fira Code" :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-monokai-pro)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -66,8 +66,14 @@
 ;; start maximized
 (add-hook 'window-setup-hook #'toggle-frame-maximized)
 
+;; Using .editorconfig now
 ;; tab width
-(setq tab-width 2)
+;; (setq tab-width 2)
+;; ; Proper indents in web mode
+;; (after! web-mode
+;;  (setq web-mode-markup-indent-offset 2
+;;        web-mode-css-indent-offset 2
+;;        web-mode-code-indent-offset 2))
 
 (after! projectile
   (setq projectile-create-missing-test-files t)
@@ -126,13 +132,6 @@
 ; Enable emojis
 (after! emojify
   (add-hook 'after-init-hook #'global-emojify-mode))
-
-; Proper indents in web mode
-(after! web-mode
- (setq web-mode-markup-indent-offset 2
-       web-mode-css-indent-offset 2
-       web-mode-code-indent-offset 2))
-
 
 ; Get Nice diffs for dooms example config files
 (defun doom/ediff-init-and-example ()
