@@ -24,7 +24,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-one)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -74,6 +74,12 @@
 ;;  (setq web-mode-markup-indent-offset 2
 ;;        web-mode-css-indent-offset 2
 ;;        web-mode-code-indent-offset 2))
+;;
+
+;; No auto formatting for ruby
+(setq +format-on-save-enabled-modes
+      '(not ruby-mode  ; uses rufo :/
+            ))
 
 (after! projectile
   (setq projectile-create-missing-test-files t)
@@ -115,25 +121,25 @@
   (add-hook 'elixir-mode-hook
             (lambda ()
               (add-hook 'before-save-hook 'elixir-format nil t))))
-              ;;(add-hook 'after-save-hook 'alchemist-iex-reload-module))))
+;;(add-hook 'after-save-hook 'alchemist-iex-reload-module))))
 
 ;; Setup some keybindings for exunit and lsp-ui
 (map! :mode elixir-mode
       :localleader
-        :desc "LSP Menu"            :nve "/"  #'lsp-ui-imenu
-        :desc "Run all tests"       :nve "tt" #'exunit-verify-all
-        :desc "Run all in umbrella" :nve "tT" #'exunit-verify-all-in-umbrella
-        :desc "Re-run tests"        :nve "tx" #'exunit-rerun
-        :desc "Run single test"     :nve "ts" #'exunit-verify-single)
+      :desc "LSP Menu"            :nve "/"  #'lsp-ui-imenu
+      :desc "Run all tests"       :nve "tt" #'exunit-verify-all
+      :desc "Run all in umbrella" :nve "tT" #'exunit-verify-all-in-umbrella
+      :desc "Re-run tests"        :nve "tx" #'exunit-rerun
+      :desc "Run single test"     :nve "ts" #'exunit-verify-single)
 
 (after! projectile
   (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
 
-; Enable emojis
+                                        ; Enable emojis
 (after! emojify
   (add-hook 'after-init-hook #'global-emojify-mode))
 
-; Get Nice diffs for dooms example config files
+                                        ; Get Nice diffs for dooms example config files
 (defun doom/ediff-init-and-example ()
   "ediff the current `init.el' with the example in doom-emacs-dir"
   (interactive)
