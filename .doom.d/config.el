@@ -34,7 +34,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -51,8 +50,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
-;;
-
 
 ;; Make right option usable for osx features
 (setq-default mac-right-option-modifier nil)
@@ -81,6 +78,7 @@
       '(not ruby-mode  ; uses rufo :/
             ))
 
+;; Make Projectile create missing test files and some nice config for it
 (after! projectile
   (setq projectile-create-missing-test-files t)
 
@@ -115,14 +113,6 @@
                                     :test-dir "spec/"
                                     :test-suffix "_spec"))
 
-
-;; Enable format and iex reload on save
-(after! lsp
-  (add-hook 'elixir-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook 'elixir-format nil t))))
-;;(add-hook 'after-save-hook 'alchemist-iex-reload-module))))
-
 ;; Setup some keybindings for exunit and lsp-ui
 (map! :mode elixir-mode
       :localleader
@@ -132,30 +122,26 @@
       :desc "Re-run tests"        :nve "tx" #'exunit-rerun
       :desc "Run single test"     :nve "ts" #'exunit-verify-single)
 
+;; Better support for umbrella project. Better use .git than mix.exs
+;; Probably there is a better way, but this does the trick for now.
 (after! projectile
   (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
 
-                                        ; Enable emojis
+;; Enable emojis
 (after! emojify
   (add-hook 'after-init-hook #'global-emojify-mode))
 
-                                        ; Get Nice diffs for dooms example config files
+;; Get Nice diffs for dooms example config files
+;;
 (defun doom/ediff-init-and-example ()
   "ediff the current `init.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-private-dir "init.el")
                (concat doom-emacs-dir "init.example.el")))
-
-(define-key! help-map
-  "di"   #'doom/ediff-init-and-example
-  )
-
+(define-key! help-map "di"   #'doom/ediff-init-and-example)
 (defun doom/ediff-config-and-example ()
   "ediff the current `config.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-private-dir "config.el")
                (concat doom-emacs-dir "core/templates/config.example.el")))
-
-(define-key! help-map
-  "dc"   #'doom/ediff-config-and-example
-  )
+(define-key! help-map "dc"   #'doom/ediff-config-and-example)
