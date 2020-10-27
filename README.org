@@ -1,5 +1,5 @@
 * Hi there 👋
-I'm @andreasknoepfle and this is a collection of private config files and setup scripts.
+I'm [[https://www.smallbutton.com][@andreasknoepfle]] and this is a collection of private config files and setup scripts.
 Feel free to grab & steal anything you like 🎯.
 
 ** Structure:
