@@ -54,9 +54,11 @@
 ;; they are implemented.
 
 ;; Make right option usable for osx features
+;; This allows to write german umlauts
 (setq-default mac-right-option-modifier nil)
 
-;; define command to switch between implementation and test
+;; define command to switch between implementation and test to be on
+;; SPC a
 (map! :leader :desc "Toggle between implementation and test" "a" #'projectile-toggle-between-implementation-and-test)
 
 ;; set localleader (mode key) to ,
@@ -75,12 +77,13 @@
 ;;        web-mode-code-indent-offset 2))
 ;;
 
-;; No auto formatting for ruby
+;; Disables auto formatting for ruby
 (setq +format-on-save-enabled-modes
       '(not ruby-mode  ; uses rufo :/
             ))
 
-;; Make Projectile create missing test files and some nice config for it
+;; Make Projectile create missing test files and some nice config
+;; that works better with non rspec projects
 (after! projectile
   (setq projectile-create-missing-test-files t)
 
@@ -116,6 +119,8 @@
                                     :test-suffix "_spec"))
 
 ;; Setup some keybindings for exunit and lsp-ui
+;; requires to install exunit package (see packages.el)
+;; Available through localleader (,)
 (map! :mode elixir-mode
       :localleader
       :desc "LSP Menu"            :nve "/"  #'lsp-ui-imenu
@@ -129,12 +134,11 @@
 (after! projectile
   (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
 
-;; Enable emojis
-(after! emojify
-  (add-hook 'after-init-hook #'global-emojify-mode))
-
-;; Get Nice diffs for dooms example config files
+;; Get nice diffs for dooms example config files
+;; for comparison on what changed after an update
 ;;
+;; SPC h d i -> diff the init.el
+;; SPC h d c -> diff the config.el
 (defun doom/ediff-init-and-example ()
   "ediff the current `init.el' with the example in doom-emacs-dir"
   (interactive)
