@@ -149,6 +149,8 @@
 ;; SPC f Y
 (defun doom/yank-buffer-relative-filename ()
   (interactive)
-  (message (kill-new (file-relative-name buffer-file-name (projectile-project-root)))))
+  (if-let (filename (or buffer-file-name (bound-and-true-p list-buffers-directory)))
+      (message (kill-new (file-relative-name filename (projectile-project-root))))
+    (error "Couldn't find relative filename in current buffer")))
 
 (map! :leader :desc "Yank buffer relative filename" "f Y" #'doom/yank-buffer-relative-filename)
