@@ -10,6 +10,7 @@
       user-mail-address "andreas.knoepfle@gmail.com")
 
 
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
 ;; + `doom-font'
@@ -118,24 +119,12 @@
                                     :test-dir "spec/"
                                     :test-suffix "_spec"))
 
-;; Setup some keybindings for exunit and lsp-ui
-;; requires to install exunit package (see packages.el)
-;; Available through localleader (,)
-;; (map! :mode elixir-mode
-;;       :localleader
-;;       :desc "LSP Menu"            :nve "/"  #'lsp-ui-imenu
-;;       :desc "Run all tests"       :nve "tt" #'exunit-verify-all
-;;       :desc "Run all in umbrella" :nve "tT" #'exunit-verify-all-in-umbrella
-;;       :desc "Re-run tests"        :nve "tx" #'exunit-rerun
-;;       :desc "Run single test"     :nve "ts" #'exunit-verify-single)
-
 ;; Better support for umbrella project. Better use .git than mix.exs
 ;; Probably there is a better way, but this does the trick for now.
 (after! projectile
   (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
 
 (setq lsp-enable-file-watchers nil)
-;;(setq lsp-file-watch-ignored (-concat '("\\.asdf" "[/\\\\]\\.elixir_ls$" "[/\\\\]deps$" "[/\\\\]_build$") lsp-file-watch-ignored))
 
 ;; Get nice diffs for dooms example config files
 ;; for comparison on what changed after an update
