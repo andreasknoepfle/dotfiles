@@ -7,14 +7,14 @@ function clean_local_orphan_branches {
     local lb=$(echo $i | cut -d ';' -f 2)
     local rb=$(echo $i | cut -d ';' -f 3)
     local rs=$(echo $rb | sed -e 's#refs/remotes/##g')
-    local mb=$(git merge-base master $lc)
+    local mb=$(git merge-base main $lc)
 
     if ! git ls-remote --exit-code . $rb >/dev/null; then
       echo -e "Local branch \e[1;32m$lb\e[0m has lost its tracked branch \e[1;31m$rs\e[0m."
       if [ "$mb" == "$lc" ]; then
-        echo "It has been completely merged into master."
+        echo "It has been completely merged into main."
       else
-        echo "It has NOT BEEN MERGED into master."
+        echo "It has NOT BEEN MERGED into main."
       fi
 
       read -p "Delete? (N/y) " -n 1 -r
