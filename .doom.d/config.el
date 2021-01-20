@@ -147,10 +147,10 @@
 ;; Copy relative paths
 ;;
 ;; SPC f Y
-(defun doom/yank-buffer-relative-filename ()
+(defun +default/yank-buffer-relative-filename ()
   (interactive)
   (if-let (filename (or buffer-file-name (bound-and-true-p list-buffers-directory)))
       (message (kill-new (file-relative-name filename (projectile-project-root))))
     (error "Couldn't find relative filename in current buffer")))
 
-(map! :leader :desc "Yank buffer relative filename" "f Y" #'doom/yank-buffer-relative-filename)
+(map! :leader :desc "Yank buffer relative filename" "f Y" #'+default/yank-buffer-relative-filename)
