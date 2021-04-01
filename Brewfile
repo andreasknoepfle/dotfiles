@@ -36,7 +36,6 @@ brew "emacs-plus"
 
 # cask
 tap "homebrew/cask"
-cask "karabiner-elements"
 cask "spectacle"
 cask "1Password"
 cask "Dashlane"

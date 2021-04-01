@@ -7,12 +7,15 @@ if ! zgenom saved; then
 
   zgenom oh-my-zsh
   zgenom oh-my-zsh plugins/git
+  zgenom oh-my-zsh plugins/bundler
   zgenom oh-my-zsh plugins/gpg-agent
   zgenom oh-my-zsh plugins/asdf
+  zgenom oh-my-zsh plugins/history-substring-search
 
   zgenom oh-my-zsh themes/robbyrussell
   
   zgenom load zsh-users/zsh-history-substring-search 
+  zgenom load urbainvaes/fzf-marks
 
   # save all to init script
   zgenom save
@@ -48,3 +51,5 @@ export ERL_EPMD_ADDRESS=127.0.0.1
 
 # kerl options for asdf erlang
 export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl)"
+
+alias p=fzm

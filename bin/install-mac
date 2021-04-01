@@ -29,7 +29,6 @@ git config --global gpg.program $(which gpg)
 
 echo "Linking Dotfiles"
 
-ln -fs $DOTFILES_ROOT/karabiner.json ~/.config/karabiner.json
 ln -fs $DOTFILES_ROOT/.doom.d ~/.doom.d
 ln -fs $DOTFILES_ROOT/.zshrc ~/.zshrc
 ln -fs $DOTFILES_ROOT/.zshenv ~/.zshenv
