@@ -32,14 +32,19 @@ brew "zsh"
 brew "task"
 
 tap "d12frosted/emacs-plus"
-brew "emacs-plus"
+brew "emacs-plus", args: ["with-modern-doom3-icon"]
 
 # cask
 tap "homebrew/cask"
 cask "spectacle"
 cask "1Password"
 cask "Dashlane"
+cask "google-chrome"
+cask "firefox"
 
 tap "homebrew/cask-fonts"
 cask "font-fira-code"
 cask "font-fira-sans"
+
+tap pmeinhardt/tools
+cask "pmeinhardt/tools/hmm", args: ["HEAD"]

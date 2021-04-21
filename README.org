@@ -12,7 +12,6 @@ Feel free to grab & steal anything you like 🎯.
 - ~.tmux.conf.local~ [[https://github.com/gpakosz/.tmux][Oh my tmux config]]
 - ~.vimrc~ Some default vim config (probably not that great 🐀)
 - ~.zshrc~ & ~.zshenv~ [[https://ohmyz.sh/][Oh my zsh config 💻]]
-- ~.karabiner.json~ [[https://karabiner-elements.pqrs.org/][Config for karabiner keybindings]]
 
 ** Installation:
 Check `bin/install-mac` for some basic setup. Sadly it is quite hard to keep things up to date, so it is more of a reference for me

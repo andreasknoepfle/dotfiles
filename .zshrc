@@ -53,3 +53,7 @@ export ERL_EPMD_ADDRESS=127.0.0.1
 export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl)"
 
 alias p=fzm
+
+# aha autocomplete setup
+eval 
+AHA_AC_ZSH_SETUP_PATH=/Users/andi/Library/Caches/action-hero/autocomplete/zsh_setup && test -f $AHA_AC_ZSH_SETUP_PATH && source $AHA_AC_ZSH_SETUP_PATH;
