@@ -24,8 +24,9 @@ echo "Configuring git"
 # install global gitignore
 git config --global core.excludesfile $DOTFILES_ROOT/.gitignore_global
 
-# set gpg
-git config --global gpg.program $(which gpg)
+echo "Install doom"
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
 
 echo "Linking Dotfiles"
 
