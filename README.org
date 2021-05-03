@@ -8,7 +8,6 @@ Feel free to grab & steal anything you like 🎯.
 - ~.default-gems~ [[https://github.com/asdf-vm/asdf-ruby#default-gems][Default gems for asdf-ruby]]
 - ~.editorconfig~ [[https://editorconfig.org/][Global fallback .editorconfig 📓]]
 - ~.gitignore_global~ [[https://stackoverflow.com/questions/7335420/global-git-ignore#answer-7335487][Global gitignore 🌍]]
-- ~.spacemacs~ *OUTDATED* [[https://www.spacemacs.org][Spacemacs config]]
 - ~.tmux.conf.local~ [[https://github.com/gpakosz/.tmux][Oh my tmux config]]
 - ~.vimrc~ Some default vim config (probably not that great 🐀)
 - ~.zshrc~ & ~.zshenv~ [[https://ohmyz.sh/][Oh my zsh config 💻]]
