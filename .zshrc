@@ -11,6 +11,7 @@ if ! zgenom saved; then
   zgenom oh-my-zsh plugins/gpg-agent
   zgenom oh-my-zsh plugins/asdf
   zgenom oh-my-zsh plugins/history-substring-search
+  zgenom load paulirish/git-open
 
   zgenom oh-my-zsh themes/robbyrussell
   
