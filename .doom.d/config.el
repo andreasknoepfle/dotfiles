@@ -21,7 +21,7 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "Fira Code" :size 17)
-      doom-variable-pitch-font (font-spec :family "Fira Sans"))
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 17))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -125,6 +125,9 @@
   (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
 
 (setq lsp-enable-file-watchers nil)
+
+;; Somehow LSP formatting opens a pop-up on file errors and never closes it :/ let's stick to mix format
+(setq-hook! 'elixir-mode-hook +format-with-lsp nil)
 
 ;; Get nice diffs for dooms example config files
 ;; for comparison on what changed after an update
