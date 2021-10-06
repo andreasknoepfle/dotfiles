@@ -21,14 +21,14 @@
 
        :completion
        (company           ; the ultimate code completion backend
-        +auto            ; as-you-type code completion
-        +childframe)     ; a nicer company UI. Emacs +26 only!
+          +tng)            ; using tab
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy                ; a search engine for love and life
         +prescient         ; better sorting of results
         +childframe        ; a nicer ivy UI. Emacs +26 only!
         +icons)
+       ;;(vertico +icons)           ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
