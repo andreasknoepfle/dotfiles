@@ -77,11 +77,15 @@
 ;;        web-mode-css-indent-offset 2
 ;;        web-mode-code-indent-offset 2))
 ;;
+(after! editorconfig
+  (add-to-list 'editorconfig-indentation-alist '(web-mode-markup-indent-offset web-mode-css-indent-offset web-mode-code-indent-offset)))
 
 ;; Disables auto formatting for ruby
 (setq +format-on-save-enabled-modes
-      '(not ruby-mode  ; uses rufo :/
-            ))
+      '(not ruby-mode
+            js2-mode
+            rjsx-mode
+            js-mode))
 
 ;; Make Projectile create missing test files and some nice config
 ;; that works better with non rspec projects
@@ -124,10 +128,10 @@
 (after! projectile
   (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
 
-(setq lsp-enable-file-watchers nil)
+;; (setq lsp-enable-file-watchers nil)
 
 ;; Somehow LSP formatting opens a pop-up on file errors and never closes it :/ let's stick to mix format
-(setq-hook! 'elixir-mode-hook +format-with-lsp nil)
+;; (setq +format-with-lsp nil)
 
 ;; Get nice diffs for dooms example config files
 ;; for comparison on what changed after an update
@@ -157,3 +161,12 @@
     (error "Couldn't find relative filename in current buffer")))
 
 (map! :leader :desc "Yank buffer relative filename" "f Y" #'+default/yank-buffer-relative-filename)
+
+;; Elixir code-fold
+
+;; Enable folding
+(setq lsp-enable-folding t)
+
+;; Add origami and LSP integration
+(use-package! lsp-origami)
+(add-hook! 'lsp-after-open-hook #'lsp-origami-try-enable)

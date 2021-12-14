@@ -55,6 +55,7 @@ export ERL_EPMD_ADDRESS=127.0.0.1
 export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl@1.1)"
 
 alias p=fzm
+alias rechrome='open -n /Applications/Google\ Chrome.app'
 
 # aha autocomplete setup
 eval 
