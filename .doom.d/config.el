@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Andreas Knöpfle"
@@ -92,46 +91,47 @@
 (after! projectile
   (setq projectile-create-missing-test-files t)
 
-  ;; Ruby
-  (projectile-register-project-type 'ruby-rspec '("Gemfile" "lib" "spec")
-                                    :project-file "Gemfile"
-                                    :compile "bundle exec rake"
-                                    :src-dir "lib/"
-                                    :test "bundle exec rspec"
-                                    :test-dir "spec/"
-                                    :test-suffix "_spec")
+  ;; ;; Ruby
+  ;; (projectile-register-project-type 'ruby-rspec '("Gemfile" "lib" "spec")
+  ;;                                   :project-file "Gemfile"
+  ;;                                   :compile "bundle exec rake"
+  ;;                                   :src-dir "lib/"
+  ;;                                   :test "bundle exec rspec"
+  ;;                                   :test-dir "spec/"
+  ;;                                   :test-suffix "_spec")
 
-  (projectile-register-project-type 'ruby-test '("Gemfile" "lib" "test")
-                                    :project-file "Gemfile"
-                                    :compile "bundle exec rake"
-                                    :src-dir "lib/"
-                                    :test "bundle exec rake test"
-                                    :test-suffix "_test")
+  ;; (projectile-register-project-type 'ruby-test '("Gemfile" "lib" "test")
+  ;;                                   :project-file "Gemfile"
+  ;;                                   :compile "bundle exec rake"
+  ;;                                   :src-dir "lib/"
+  ;;                                   :test "bundle exec rake test"
+  ;;                                   :test-suffix "_test")
 
-  (projectile-register-project-type 'rails-test '("Gemfile" "app" "lib" "db" "config" "test")
-                                    :project-file "Gemfile"
-                                    :compile "bundle exec rails server"
-                                    :src-dir "app/"
-                                    :test "bundle exec rake test"
-                                    :test-suffix "_test")
+  ;; (projectile-register-project-type 'rails-test '("Gemfile" "app" "lib" "db" "config" "test")
+  ;;                                   :project-file "Gemfile"
+  ;;                                   :compile "bundle exec rails server"
+  ;;                                   :src-dir "app/"
+  ;;                                   :test "bundle exec rake test"
+  ;;                                   :test-suffix "_test")
 
-  (projectile-register-project-type 'rails-rspec '("Gemfile" "app" "lib" "db" "config" "spec")
-                                    :project-file "Gemfile"
-                                    :compile "bundle exec rails server"
-                                    :src-dir "app/"
-                                    :test "bundle exec rspec"
-                                    :test-dir "spec/"
-                                    :test-suffix "_spec"))
+  ;; (projectile-register-project-type 'rails-rspec '("Gemfile" "app" "lib" "db" "config" "spec")
+  ;;                                   :project-file "Gemfile"
+  ;;                                   :compile "bundle exec rails server"
+  ;;                                   :src-dir "app/"
+  ;;                                   :test "bundle exec rspec"
+  ;;                                   :test-dir "spec/"
+  ;;                                   :test-suffix "_spec")
+  )
 
 ;; Better support for umbrella project. Better use .git than mix.exs
 ;; Probably there is a better way, but this does the trick for now.
-(after! projectile
-  (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
+  ;; (after! projectile
+  ;;  (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
 
-;; (setq lsp-enable-file-watchers nil)
+(setq lsp-enable-file-watchers nil)
 
 ;; Somehow LSP formatting opens a pop-up on file errors and never closes it :/ let's stick to mix format
-;; (setq +format-with-lsp nil)
+;;(setq-hook! 'elixir-mode-hook +format-with-lsp nil)
 
 ;; Get nice diffs for dooms example config files
 ;; for comparison on what changed after an update
@@ -162,11 +162,3 @@
 
 (map! :leader :desc "Yank buffer relative filename" "f Y" #'+default/yank-buffer-relative-filename)
 
-;; Elixir code-fold
-
-;; Enable folding
-(setq lsp-enable-folding t)
-
-;; Add origami and LSP integration
-(use-package! lsp-origami)
-(add-hook! 'lsp-after-open-hook #'lsp-origami-try-enable)

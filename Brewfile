@@ -31,8 +31,8 @@ brew "pinentry-mac"
 brew "zsh"
 brew "task"
 
-tap "d12frosted/emacs-plus"
-brew "emacs-plus", args: ["with-modern-doom3-icon"]
+tap "railwaycat/emacsmacport"
+cask "emacs-mac", args: ["with-modules"]
 
 # cask
 tap "homebrew/cask"
