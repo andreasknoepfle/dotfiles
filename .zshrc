@@ -1,26 +1,8 @@
-# load zgenom
-source "${HOME}/.zgenom/zgenom.zsh"
+ZSH_THEME="robbyrussell" 
 
-# if the init scipt doesn't exist
-if ! zgenom saved; then
-  echo "Creating a zgenom save"
-
-  zgenom oh-my-zsh
-  zgenom oh-my-zsh plugins/git
-  zgenom oh-my-zsh plugins/bundler
-  zgenom oh-my-zsh plugins/gpg-agent
-  zgenom oh-my-zsh plugins/asdf
-  zgenom oh-my-zsh plugins/history-substring-search
-  zgenom load paulirish/git-open
-
-  zgenom oh-my-zsh themes/robbyrussell
-  
-  zgenom load zsh-users/zsh-history-substring-search 
-  zgenom load urbainvaes/fzf-marks
-
-  # save all to init script
-  zgenom save
-fi
+# ~/.zshrc
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
 
 # FZF Shell integartion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -5,12 +5,6 @@ DOTFILES_ROOT=$(pwd -P)
 
 set -e
 
-echo "Installing zgenom"
-
-if [ ! -d ~/.oh-my-zsh ]; then
-  git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
-fi
-
 echo "Installing .tmux"
 
 # install .tmux
@@ -36,6 +30,7 @@ ln -fs $DOTFILES_ROOT/.zshenv ~/.zshenv
 ln -fs $DOTFILES_ROOT/.tmux.conf.local ~/.tmux.conf.local
 ln -fs $DOTFILES_ROOT/.default-gems ~/.default-gems
 ln -fs $DOTFILES_ROOT/.editorconfig ~/.editorconfig
+ln -fs $DOTFILES_ROOT/.zsh_plugins.txt ~/.zsh_plugins.txt
 
 echo "Elixir LS"
 mkdir -p ~/bin

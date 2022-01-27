@@ -1,9 +1,6 @@
 # databases & deps
-brew "elasticsearch"
-brew "redis"
 brew "imagemagick"
 brew "graphviz"
-brew "yarn"
 brew "plantuml"
 
 # asdf
@@ -24,6 +21,7 @@ brew "wxmac"
 
 # workflow & editors
 brew "vim"
+brew "antibody"
 brew "fzf"
 brew "git"
 brew "pinentry"
