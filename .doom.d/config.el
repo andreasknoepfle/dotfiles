@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-snazzy)
+(setq doom-theme 'doom-molokai)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -162,3 +162,7 @@
 
 (map! :leader :desc "Yank buffer relative filename" "f Y" #'+default/yank-buffer-relative-filename)
 
+;; THE MALTE
+(remove-hook 'doom-first-input-hook #'evil-snipe-mode)
+(map! :n "s" #'evil-avy-goto-char)
+(map! :i "j j" #'evil-force-normal-state)
