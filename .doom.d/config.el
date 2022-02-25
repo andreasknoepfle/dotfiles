@@ -67,15 +67,12 @@
 ;; start maximized
 (add-hook 'window-setup-hook #'toggle-frame-maximized)
 
-;; Using .editorconfig now
-;; tab width
-;; (setq tab-width 2)
-;; ; Proper indents in web mode
-;; (after! web-mode
-;;  (setq web-mode-markup-indent-offset 2
-;;        web-mode-css-indent-offset 2
-;;        web-mode-code-indent-offset 2))
-;;
+;; Define some directores
+(setq projectile-project-search-path '(("~/repos" . 2)))
+
+(setq deft-directory "~/notes")
+
+;; Nice indentation in some web contexts
 (after! editorconfig
   (add-to-list 'editorconfig-indentation-alist '(web-mode-markup-indent-offset web-mode-css-indent-offset web-mode-code-indent-offset)))
 
@@ -86,47 +83,9 @@
             rjsx-mode
             js-mode))
 
-;; Make Projectile create missing test files and some nice config
-;; that works better with non rspec projects
+;; Make Projectile create missing test files
 (after! projectile
-  (setq projectile-create-missing-test-files t)
-
-  ;; ;; Ruby
-  ;; (projectile-register-project-type 'ruby-rspec '("Gemfile" "lib" "spec")
-  ;;                                   :project-file "Gemfile"
-  ;;                                   :compile "bundle exec rake"
-  ;;                                   :src-dir "lib/"
-  ;;                                   :test "bundle exec rspec"
-  ;;                                   :test-dir "spec/"
-  ;;                                   :test-suffix "_spec")
-
-  ;; (projectile-register-project-type 'ruby-test '("Gemfile" "lib" "test")
-  ;;                                   :project-file "Gemfile"
-  ;;                                   :compile "bundle exec rake"
-  ;;                                   :src-dir "lib/"
-  ;;                                   :test "bundle exec rake test"
-  ;;                                   :test-suffix "_test")
-
-  ;; (projectile-register-project-type 'rails-test '("Gemfile" "app" "lib" "db" "config" "test")
-  ;;                                   :project-file "Gemfile"
-  ;;                                   :compile "bundle exec rails server"
-  ;;                                   :src-dir "app/"
-  ;;                                   :test "bundle exec rake test"
-  ;;                                   :test-suffix "_test")
-
-  ;; (projectile-register-project-type 'rails-rspec '("Gemfile" "app" "lib" "db" "config" "spec")
-  ;;                                   :project-file "Gemfile"
-  ;;                                   :compile "bundle exec rails server"
-  ;;                                   :src-dir "app/"
-  ;;                                   :test "bundle exec rspec"
-  ;;                                   :test-dir "spec/"
-  ;;                                   :test-suffix "_spec")
-  )
-
-;; Better support for umbrella project. Better use .git than mix.exs
-;; Probably there is a better way, but this does the trick for now.
-  ;; (after! projectile
-  ;;  (setq projectile-project-root-files (delete "mix.exs" projectile-project-root-files)))
+  (setq projectile-create-missing-test-files t))
 
 (setq lsp-enable-file-watchers nil)
 
@@ -163,6 +122,9 @@
 (map! :leader :desc "Yank buffer relative filename" "f Y" #'+default/yank-buffer-relative-filename)
 
 ;; THE MALTE
-(remove-hook 'doom-first-input-hook #'evil-snipe-mode)
-(map! :n "s" #'evil-avy-goto-char)
-(map! :i "j j" #'evil-force-normal-state)
+;; (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
+;; (map! :n "s" #'evil-avy-goto-char)
+;; (map! :i "j j" #'evil-force-normal-state)
+
+;; Use nicer iconset in neotre
+(setq doom-themes-neotree-file-icons t)
