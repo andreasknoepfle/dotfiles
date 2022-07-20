@@ -1289,6 +1289,9 @@
       },
       "pmeinhardt/tools": {
         "revision": "f72511fdff41500393c48010dd33b5ccd9f75263"
+      },
+      "homebrew/cask-drivers": {
+        "revision": "6390b486074d3e8e885a9174faa40e526138fd23"
       }
     },
     "cask": {
@@ -1375,6 +1378,12 @@
         "options": {
           "full_name": "docker"
         }
+      },
+      "obinskit": {
+        "version": "1.2.11",
+        "options": {
+          "full_name": "obinskit"
+        }
       }
     },
     "mas": {
@@ -1394,7 +1403,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.5.5",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "8c0a50d123ffc138a2f2bf8ea843b202b14abcfb",
+        "Homebrew/homebrew-core": "6074e6e7f64b6cb5668f2834181a1ce38b3ef92f",
         "CLT": "13.4.0.0.1.1651278267",
         "Xcode": "13.4",
         "macOS": "12.3"

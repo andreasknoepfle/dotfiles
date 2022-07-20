@@ -67,6 +67,9 @@ cask 'keycastr'
 cask 'microsoft-teams'
 cask 'slack'
 
+tap 'homebrew/cask-drivers'
+cask 'obinskit'
+
 mas 'Amphetamine', id: 937_984_704
 mas 'Irvue', id: 1_039_633_667
 mas 'IthoughtsX', id: 720_669_838
