@@ -1,9 +1,15 @@
-# /bin/zsh
+#/bin/zsh
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
 set -e
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+softwareupdate --install-rosetta
+
+brew bundle
 
 echo "Installing .tmux"
 
@@ -23,7 +29,7 @@ git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 
 echo "Linking Dotfiles"
-
+rm -rf ./~.doom.d
 ln -fs $DOTFILES_ROOT/.doom.d ~/.doom.d
 ln -fs $DOTFILES_ROOT/.zshrc ~/.zshrc
 ln -fs $DOTFILES_ROOT/.zshenv ~/.zshenv
@@ -31,6 +37,7 @@ ln -fs $DOTFILES_ROOT/.tmux.conf.local ~/.tmux.conf.local
 ln -fs $DOTFILES_ROOT/.default-gems ~/.default-gems
 ln -fs $DOTFILES_ROOT/.editorconfig ~/.editorconfig
 ln -fs $DOTFILES_ROOT/.zsh_plugins.txt ~/.zsh_plugins.txt
+ln -fs $DOTFILES_ROOT/.alacritty.yml ~/.alacritty.yml
 
 echo "Elixir LS"
 mkdir -p ~/bin
@@ -45,6 +52,9 @@ curl -o /tmp/doom.png https://raw.githubusercontent.com/eccentric-j/doom-icon/ma
   Rez -append /tmp/icns.rsrc -o "$EMACS_APP"$'/Icon\r' &&
   SetFile -a C "$EMACS_APP" &&
   SetFile -a V "$EMACS_APP"$'/Icon\r'
+
+# asdf
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 
 echo "Done"
 
