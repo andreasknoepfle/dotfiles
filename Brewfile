@@ -47,6 +47,7 @@ cask 'spectacle'
 cask '1Password'
 cask 'google-chrome'
 cask 'firefox'
+cask 'chromedriver'
 
 tap 'homebrew/cask-fonts'
 cask 'font-fira-code'

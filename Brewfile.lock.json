@@ -1282,7 +1282,7 @@
         "revision": "e5af09f13d46fa9cf64c1dcb828643cd95f37aec"
       },
       "homebrew/cask": {
-        "revision": "88febe2098abd29cafddae17a1e994e69e160c1a"
+        "revision": "60a032ba89962c5abdb6d07f813817b6f29c0a51"
       },
       "homebrew/cask-fonts": {
         "revision": "85239d934569154a2e4c754125b9727d17804d01"
@@ -1291,7 +1291,7 @@
         "revision": "f72511fdff41500393c48010dd33b5ccd9f75263"
       },
       "homebrew/cask-drivers": {
-        "revision": "6390b486074d3e8e885a9174faa40e526138fd23"
+        "revision": "b68a966a1c973a9b63f7f97e867df325287dfd9e"
       }
     },
     "cask": {
@@ -1302,7 +1302,7 @@
         }
       },
       "1password": {
-        "version": "8.7.3",
+        "version": "8.8.0",
         "options": {
           "full_name": "1Password"
         }
@@ -1384,6 +1384,12 @@
         "options": {
           "full_name": "obinskit"
         }
+      },
+      "chromedriver": {
+        "version": "103.0.5060.134",
+        "options": {
+          "full_name": "chromedriver"
+        }
       }
     },
     "mas": {
@@ -1403,7 +1409,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.5.5",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "6074e6e7f64b6cb5668f2834181a1ce38b3ef92f",
+        "Homebrew/homebrew-core": "1a166f147434104c551f611190531cddbe01297a",
         "CLT": "13.4.0.0.1.1651278267",
         "Xcode": "13.4",
         "macOS": "12.3"
