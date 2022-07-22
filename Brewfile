@@ -18,6 +18,7 @@ brew 'libtool'
 brew 'unixodbc'
 brew 'unzip'
 brew 'curl'
+brew 'cmake'
 
 # asdf-erlang
 brew 'wxwidgets'
