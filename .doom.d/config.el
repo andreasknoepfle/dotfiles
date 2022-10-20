@@ -79,10 +79,6 @@
 ;; This allows to write german umlauts
 (setq-default mac-right-option-modifier nil)
 
-;; define command to switch between implementation and test to be on
-;; SPC a
-(map! :leader :desc "Toggle between implementation and test" "a" #'projectile-toggle-between-implementation-and-test)
-
 ;; set localleader (mode key) to ,
 (setq doom-localleader-key ",")
 
@@ -111,6 +107,7 @@
 
 (setq lsp-enable-file-watchers nil)
 (setq lsp-elixir-suggest-specs nil)
+(setq lsp-elixir-enable-test-lenses nil)
 
 ;; Somehow LSP formatting opens a pop-up on file errors and never closes it :/ let's stick to mix format
 ;;(setq-hook! 'elixir-mode-hook +format-with-lsp nil)
@@ -123,14 +120,14 @@
 (defun doom/ediff-init-and-example ()
   "ediff the current `init.el' with the example in doom-emacs-dir"
   (interactive)
-  (ediff-files (concat doom-private-dir "init.el")
-               (concat doom-emacs-dir "init.example.el")))
+  (ediff-files (concat doom-user-dir "init.el")
+               (concat doom-emacs-dir "templates/init.example.el")))
 (define-key! help-map "di"   #'doom/ediff-init-and-example)
 (defun doom/ediff-config-and-example ()
   "ediff the current `config.el' with the example in doom-emacs-dir"
   (interactive)
-  (ediff-files (concat doom-private-dir "config.el")
-               (concat doom-emacs-dir "core/templates/config.example.el")))
+  (ediff-files (concat doom-user-dir "config.el")
+               (concat doom-emacs-dir "templates/config.example.el")))
 (define-key! help-map "dc"   #'doom/ediff-config-and-example)
 
 ;; Copy relative paths
@@ -150,7 +147,7 @@
 ;; (map! :i "j j" #'evil-force-normal-state)
 
 ;; Use nicer iconset in neotre
-(setq doom-themes-neotree-file-icons t)
+;; (setq doom-themes-neotree-file-icons t)
 
 ;; Evil multiedit case sensitivity
 (defun make-evil-multiedit-case-sensitive (fn &rest args)

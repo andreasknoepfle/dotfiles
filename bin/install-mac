@@ -53,4 +53,3 @@ curl -o /tmp/doom.png https://raw.githubusercontent.com/eccentric-j/doom-icon/ma
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 
 echo "Done"
-
