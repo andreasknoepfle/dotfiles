@@ -38,10 +38,19 @@ brew 'tmux'
 brew 'git-crypt'
 brew 'ripgrep'
 brew 'fd'
+brew 'yarn'
+brew 'watch'
+brew 'stern'
+brew 'mas'
 
 tap 'railwaycat/emacsmacport'
 brew 'railwaycat/emacsmacport/emacs-mac', args: ['with-modules']
 brew 'wget'
+brew 'aspell'
+
+# chromic
+brew 'xpdf'
+brew 'verapdf'
 
 # cask
 tap 'homebrew/cask'
@@ -61,6 +70,7 @@ brew 'pmeinhardt/tools/hmm', args: ['HEAD']
 brew 'gpg2'
 cask 'docker'
 brew 'kind'
+brew 'kubernetes-cli'
 
 cask 'alacritty'
 cask 'spotify'
@@ -78,5 +88,6 @@ tap 'homebrew/cask-drivers'
 cask 'obinskit'
 
 mas 'Amphetamine', id: 937_984_704
+mas 'Dashlane', id: 517_914_548
 mas 'Irvue', id: 1_039_633_667
 mas 'IthoughtsX', id: 720_669_838
