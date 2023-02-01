@@ -63,7 +63,7 @@ brew 'gource'
 brew 'dos2unix'
 brew 'wget'
 brew 'gpg2'
-brew "dialog"
+brew 'dialog'
 
 tap 'pmeinhardt/tools'
 brew 'pmeinhardt/tools/hmm', args: ['HEAD']
@@ -80,11 +80,11 @@ brew 'ghostscript'
 brew 'kind'
 brew 'kubernetes-cli'
 brew 'stern'
-brew "mkcert"
-brew "nss"
+brew 'mkcert'
+brew 'nss'
 
-tap "ionos-cloud/ionos-cloud"
-brew "ionos-cloud/ionos-cloud/ionosctl"
+tap 'ionos-cloud/ionos-cloud'
+brew 'ionos-cloud/ionos-cloud/ionosctl'
 
 # cask
 tap 'homebrew/cask'
