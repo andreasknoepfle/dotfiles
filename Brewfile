@@ -1,56 +1,90 @@
 # frozen_string_literal: true
 
-# databases & deps
-brew 'imagemagick'
-brew 'graphviz'
-brew 'plantuml'
-
 # asdf
 brew 'asdf'
-brew 'coreutils'
-brew 'automake'
 brew 'autoconf'
-brew 'openssl'
-brew 'libyaml'
-brew 'readline'
-brew 'libxslt'
+brew 'automake'
+brew 'cmake'
+brew 'coreutils'
+brew 'curl'
 brew 'libtool'
+brew 'libyaml'
+brew 'openssl'
+brew 'readline'
 brew 'unixodbc'
 brew 'unzip'
-brew 'curl'
-brew 'cmake'
-brew 'jq'
 
 # asdf-erlang
-brew 'wxwidgets'
 brew 'fop'
+brew 'libxslt'
+brew 'openssl@1.1'
+brew 'wxwidgets'
 
-# workflow & editors
-brew 'vim'
+# asdf-postgres
+brew 'gcc'
+brew 'ossp-uuid'
+brew 'readline'
+brew 'zlib'
+
+# tools
+brew 'ack'
 brew 'antibody'
+brew 'bash'
+brew 'fswatch'
 brew 'fzf'
+brew 'gh'
 brew 'git'
+brew 'git-crypt'
+brew 'go'
+brew 'graphviz'
+brew 'imagemagick'
+brew 'jq'
+brew 'make'
 brew 'pinentry'
 brew 'pinentry-mac'
-brew 'zsh'
+brew 'plantuml'
+brew 'shellcheck'
 brew 'task'
 brew 'tmux'
-brew 'git-crypt'
-brew 'ripgrep'
-brew 'fd'
-brew 'yarn'
+brew 'vim'
 brew 'watch'
-brew 'stern'
-brew 'mas'
+brew 'yarn'
+brew 'zsh'
 
+# emacs doom
 tap 'railwaycat/emacsmacport'
 brew 'railwaycat/emacsmacport/emacs-mac', args: ['with-modules']
-brew 'wget'
 brew 'aspell'
+brew 'ripgrep'
+brew 'fd'
+
+# Handy tools
+brew 'gource'
+brew 'dos2unix'
+brew 'wget'
+brew 'gpg2'
+brew "dialog"
+
+tap 'pmeinhardt/tools'
+brew 'pmeinhardt/tools/hmm', args: ['HEAD']
+
+# mkdocs
+brew 'python'
 
 # chromic
 brew 'xpdf'
 brew 'verapdf'
+brew 'ghostscript'
+
+# kube
+brew 'kind'
+brew 'kubernetes-cli'
+brew 'stern'
+brew "mkcert"
+brew "nss"
+
+tap "ionos-cloud/ionos-cloud"
+brew "ionos-cloud/ionos-cloud/ionosctl"
 
 # cask
 tap 'homebrew/cask'
@@ -64,14 +98,7 @@ tap 'homebrew/cask-fonts'
 cask 'font-fira-code'
 cask 'font-fira-sans'
 
-tap 'pmeinhardt/tools'
-brew 'pmeinhardt/tools/hmm', args: ['HEAD']
-
-brew 'gpg2'
 cask 'docker'
-brew 'kind'
-brew 'kubernetes-cli'
-
 cask 'alacritty'
 cask 'spotify'
 cask 'insomnia'
@@ -86,6 +113,9 @@ cask 'keybase'
 
 tap 'homebrew/cask-drivers'
 cask 'obinskit'
+
+# brew additions
+brew 'mas'
 
 mas 'Amphetamine', id: 937_984_704
 mas 'Dashlane', id: 517_914_548
