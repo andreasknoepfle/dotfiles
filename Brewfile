@@ -86,6 +86,9 @@ brew 'nss'
 tap 'ionos-cloud/ionos-cloud'
 brew 'ionos-cloud/ionos-cloud/ionosctl'
 
+tap 'hashicorp/tap'
+brew 'hashicorp/tap/terraform'
+
 # cask
 tap 'homebrew/cask'
 cask 'spectacle'
@@ -110,6 +113,7 @@ cask 'slack'
 cask 'kap'
 cask 'pgadmin4'
 cask 'keybase'
+cask 'yed'
 
 tap 'homebrew/cask-drivers'
 cask 'obinskit'
