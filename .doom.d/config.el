@@ -15,7 +15,7 @@
 ;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
 ;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-;; - `doom-unicode-font' -- for unicode glyphs
+;; - `doom-symbol-font' -- for symbols
 ;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
@@ -97,9 +97,9 @@
 ;; Disables auto formatting for ruby
 (setq +format-on-save-enabled-modes
       '(not ruby-mode
-            js2-mode
-            rjsx-mode
-            js-mode))
+        js2-mode
+        rjsx-mode
+        js-mode))
 
 ;; Make Projectile create missing test files
 (after! projectile
@@ -108,6 +108,8 @@
 (setq lsp-enable-file-watchers nil)
 (setq lsp-elixir-suggest-specs nil)
 (setq lsp-elixir-enable-test-lenses nil)
+(setq lsp-elixir-ls-version "v0.17.4")
+(setq lsp-elixir-ls-download-url "https://github.com/elixir-lsp/elixir-ls/releases/download/v0.17.4/elixir-ls-v0.17.4.zip")
 
 ;; Somehow LSP formatting opens a pop-up on file errors and never closes it :/ let's stick to mix format
 ;;(setq-hook! 'elixir-mode-hook +format-with-lsp nil)
@@ -150,8 +152,10 @@
 ;; (setq doom-themes-neotree-file-icons t)
 
 ;; Evil multiedit case sensitivity
+;; https://github.com/hlissner/evil-multiedit/issues/48
 (defun make-evil-multiedit-case-sensitive (fn &rest args)
   (let ((case-fold-search (not iedit-case-sensitive)))
     (apply fn args)))
 
 (advice-add #'evil-multiedit-match-and-next :around #'make-evil-multiedit-case-sensitive)
+

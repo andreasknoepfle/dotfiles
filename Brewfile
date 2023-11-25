@@ -53,7 +53,7 @@ brew 'zsh'
 
 # emacs doom
 tap 'railwaycat/emacsmacport'
-brew 'railwaycat/emacsmacport/emacs-mac', args: ['with-modules']
+brew 'railwaycat/emacsmacport/emacs-mac', args: ['with-native-compilation']
 brew 'aspell'
 brew 'ripgrep'
 brew 'fd'
@@ -104,7 +104,6 @@ cask 'font-fira-sans'
 cask 'docker'
 cask 'alacritty'
 cask 'spotify'
-cask 'insomnia'
 cask 'keycastr'
 cask 'discord'
 cask 'microsoft-teams'
@@ -113,6 +112,7 @@ cask 'kap'
 cask 'pgadmin4'
 cask 'keybase'
 cask 'yed'
+cask 'bruno'
 
 tap 'homebrew/cask-drivers'
 cask 'obinskit'
