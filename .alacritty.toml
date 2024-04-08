@@ -1,0 +1,14 @@
+[bell]
+animation = "EaseOutSine"
+color = "#880000"
+duration = 100
+
+[font]
+size = 18.0
+
+[font.normal]
+family = "Fira Code"
+
+[shell]
+args = ["-l", "-c", "tmux attach || tmux"]
+program = "/bin/zsh"

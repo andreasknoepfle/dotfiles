@@ -51,10 +51,15 @@ brew 'watch'
 brew 'yarn'
 brew 'zsh'
 
+# https://elixirforum.com/t/editing-heex-with-emacs-web-mode-how-to-recognize-tag-as-a-tag/53973/10
+brew 'tree-sitter'
+
 # emacs doom
 tap 'railwaycat/emacsmacport'
 brew 'railwaycat/emacsmacport/emacs-mac', args: ['with-native-compilation']
 brew 'aspell'
+brew 'grep'
+brew 'editorconfig'
 brew 'ripgrep'
 brew 'fd'
 
@@ -90,8 +95,7 @@ tap 'hashicorp/tap'
 brew 'hashicorp/tap/terraform'
 
 # cask
-tap 'homebrew/cask'
-cask 'spectacle'
+cask 'rectangle'
 cask '1Password'
 cask 'google-chrome'
 cask 'firefox'

@@ -105,15 +105,6 @@
 (after! projectile
   (setq projectile-create-missing-test-files t))
 
-(setq lsp-enable-file-watchers nil)
-(setq lsp-elixir-suggest-specs nil)
-(setq lsp-elixir-enable-test-lenses nil)
-(setq lsp-elixir-ls-version "v0.17.4")
-(setq lsp-elixir-ls-download-url "https://github.com/elixir-lsp/elixir-ls/releases/download/v0.17.4/elixir-ls-v0.17.4.zip")
-
-;; Somehow LSP formatting opens a pop-up on file errors and never closes it :/ let's stick to mix format
-;;(setq-hook! 'elixir-mode-hook +format-with-lsp nil)
-
 ;; Get nice diffs for dooms example config files
 ;; for comparison on what changed after an update
 ;;
@@ -159,3 +150,7 @@
 
 (advice-add #'evil-multiedit-match-and-next :around #'make-evil-multiedit-case-sensitive)
 
+;; Elixir: Use elixir-ts-mode instead of web-mode for HEEx
+;; https://elixirforum.com/t/editing-heex-with-emacs-web-mode-how-to-recognize-tag-as-a-tag/53973/10
+(use-package! heex-ts-mode
+  :mode "\\.heex\\'")
