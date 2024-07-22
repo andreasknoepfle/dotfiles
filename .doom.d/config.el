@@ -105,6 +105,15 @@
 (after! projectile
   (setq projectile-create-missing-test-files t))
 
+;; Remove spec suggests
+(setq lsp-elixir-suggest-specs nil)
+
+;; Otherwise we get problems with FDSIZE (not needed since --with-unlimited-select of railwaycat build)
+(setq lsp-enable-file-watchers nil)
+
+(with-eval-after-load 'flycheck
+  (setq-default flycheck-disabled-checkers '(ruby-reek)))
+
 ;; Get nice diffs for dooms example config files
 ;; for comparison on what changed after an update
 ;;

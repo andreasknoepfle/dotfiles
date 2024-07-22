@@ -58,11 +58,16 @@ export ERL_EPMD_ADDRESS=127.0.0.1
 # kerl options for asdf erlang
 # https://github.com/erlang/otp/issues/4577#issuecomment-925962048
 export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl@1.1)"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export KERL_BUILD_DOCS=yes
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 alias p=fzm
 alias rechrome='open -n /Applications/Google\ Chrome.app'
+alias opensearch='/opt/homebrew/opt/opensearch/bin/opensearch'
 
 # aha autocomplete setup
 eval 
 AHA_AC_ZSH_SETUP_PATH=/Users/andi/Library/Caches/action-hero/autocomplete/zsh_setup && test -f $AHA_AC_ZSH_SETUP_PATH && source $AHA_AC_ZSH_SETUP_PATH;
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"

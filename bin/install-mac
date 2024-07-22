@@ -39,15 +39,7 @@ ln -fs $DOTFILES_ROOT/.editorconfig ~/.editorconfig
 ln -fs $DOTFILES_ROOT/.zsh_plugins.txt ~/.zsh_plugins.txt
 ln -fs $DOTFILES_ROOT/.alacritty.toml ~/.alacritty.toml
 
-ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
-echo "Install cute doom icon https://github.com/eccentric-j/doom-icon"
-EMACS_APP="/Applications/Emacs.app"
-curl -o /tmp/doom.png https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png &&
-  sips -i /tmp/doom.png >/dev/null &&
-  DeRez -only icns /tmp/doom.png >/tmp/icns.rsrc &&
-  Rez -append /tmp/icns.rsrc -o "$EMACS_APP"$'/Icon\r' &&
-  SetFile -a C "$EMACS_APP" &&
-  SetFile -a V "$EMACS_APP"$'/Icon\r'
+$DOTFILES_ROOT/bin/install-emacs-app
 
 # asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
