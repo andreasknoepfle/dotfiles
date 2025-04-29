@@ -24,8 +24,8 @@ SPACESHIP_RPROMPT_ORDER=(
 )
 
 # ~/.zshrc
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
 # FZF Shell integartion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

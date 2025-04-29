@@ -28,7 +28,7 @@ brew 'zlib'
 
 # tools
 brew 'ack'
-brew 'antibody'
+brew 'antidote'
 brew 'bash'
 brew 'fswatch'
 brew 'fzf'
