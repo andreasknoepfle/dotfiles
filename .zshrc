@@ -71,3 +71,7 @@ AHA_AC_ZSH_SETUP_PATH=/Users/andi/Library/Caches/action-hero/autocomplete/zsh_se
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+
+. "$HOME/.cargo/env"
+eval "$(uv generate-shell-completion zsh)"

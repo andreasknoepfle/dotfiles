@@ -51,17 +51,16 @@ brew 'watch'
 brew 'yarn'
 brew 'zsh'
 
-# https://elixirforum.com/t/editing-heex-with-emacs-web-mode-how-to-recognize-tag-as-a-tag/53973/10
-brew 'tree-sitter'
-
 # emacs doom
-tap 'railwaycat/emacsmacport'
-brew 'railwaycat/emacsmacport/emacs-mac', args: ['with-native-compilation']
+#
+tap 'd12frosted/emacs-plus'
+brew 'emacs-plus', args: ["with-modern-doom3-icon"]
 brew 'aspell'
 brew 'grep'
 brew 'editorconfig'
 brew 'ripgrep'
 brew 'fd'
+brew 'tree-sitter'
 
 # Handy tools
 brew 'gource'

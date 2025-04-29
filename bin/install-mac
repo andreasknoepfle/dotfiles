@@ -39,8 +39,6 @@ ln -fs $DOTFILES_ROOT/.editorconfig ~/.editorconfig
 ln -fs $DOTFILES_ROOT/.zsh_plugins.txt ~/.zsh_plugins.txt
 ln -fs $DOTFILES_ROOT/.alacritty.toml ~/.alacritty.toml
 
-$DOTFILES_ROOT/bin/install-emacs-app
-
 # asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 

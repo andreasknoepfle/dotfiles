@@ -123,13 +123,13 @@
   "ediff the current `init.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-user-dir "init.el")
-               (concat doom-emacs-dir "templates/init.example.el")))
+               (concat doom-emacs-dir "static/init.example.el")))
 (define-key! help-map "di"   #'doom/ediff-init-and-example)
 (defun doom/ediff-config-and-example ()
   "ediff the current `config.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-user-dir "config.el")
-               (concat doom-emacs-dir "templates/config.example.el")))
+               (concat doom-emacs-dir "static/config.example.el")))
 (define-key! help-map "dc"   #'doom/ediff-config-and-example)
 
 ;; Copy relative paths
@@ -159,7 +159,6 @@
 
 (advice-add #'evil-multiedit-match-and-next :around #'make-evil-multiedit-case-sensitive)
 
-;; Elixir: Use elixir-ts-mode instead of web-mode for HEEx
-;; https://elixirforum.com/t/editing-heex-with-emacs-web-mode-how-to-recognize-tag-as-a-tag/53973/10
-(use-package! heex-ts-mode
-  :mode "\\.heex\\'")
+(use-package! pet
+  :config
+  (add-hook 'python-base-mode-hook 'pet-mode -10))
