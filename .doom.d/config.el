@@ -111,6 +111,8 @@
 ;; Otherwise we get problems with FDSIZE (not needed since --with-unlimited-select of railwaycat build)
 (setq lsp-enable-file-watchers nil)
 
+(setq lsp-elixir-local-server-command "/Users/andi/bin/elixir-ls/language_server.sh")
+
 (with-eval-after-load 'flycheck
   (setq-default flycheck-disabled-checkers '(ruby-reek)))
 
@@ -159,6 +161,86 @@
 
 (advice-add #'evil-multiedit-match-and-next :around #'make-evil-multiedit-case-sensitive)
 
-(use-package! pet
+(use-package! ellama
+  :init
+  (require 'llm-ollama)
+  (setopt ellama-coding-provider
+          (make-llm-ollama
+           :chat-model "qwen2.5-coder:7b"
+           :embedding-model "nomic-embed-text"
+           :default-chat-non-standard-params '(("num_ctx" . 32768))))
+  (setopt ellama-auto-scroll t)
+  ;; Naming new sessions with llm
+  (setopt ellama-naming-provider
+  	  (make-llm-ollama
+  	   :chat-model "llama3.2:3b"
+  	   :embedding-model "nomic-embed-text"
+  	   :default-chat-non-standard-params '(("stop" . ("\n")))))
+  (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
   :config
-  (add-hook 'python-base-mode-hook 'pet-mode -10))
+  (setq ellama-sessions-directory "~/.config/ellama/.local/cache/ellama-sessions")
+  ;; show ellama context in header line in all buffers
+  (ellama-context-header-line-global-mode +1)
+  ;; show ellama session id in header line in all buffers
+  (ellama-session-header-line-global-mode +1)
+  (map! :leader
+        (:prefix-map ("e" . "Ellama")
+         :desc "Open" "o" 'ellama
+         :desc "Write" "w" 'ellama-write
+         :desc "Proofread" "P" 'ellama-proofread
+         (:prefix ("c" . "Code")
+          :desc "Code complete" "c" 'ellama-code-complete
+          :desc "Add code" "a" 'ellama-code-add
+          :desc "Edit code" "e" 'ellama-code-edit
+          :desc "Improve code" "i" 'ellama-code-improve
+          :desc "Review code" "r" 'ellama-code-review
+          :desc "Commit message" "m" 'ellama-generate-commit-message
+          )
+         (:prefix ("s" . "Summarize")
+          :desc "Summarize" "s" 'ellama-summarize
+          :desc "Webpage summary" "w" 'ellama-summarize-webpage
+          :desc "Killring summary" "c" 'ellama-summarize-killring
+          :desc "Load session" "l" 'ellama-load-session
+          :desc "Rename session" "r" 'ellama-session-rename
+          :desc "Delete session" "d" 'ellama-session-delete
+          :desc "Activate session" "a" 'ellama-session-switch
+          )
+         (:prefix ("i" . "Improve")
+          :desc "Improve wording" "w" 'ellama-improve-wording
+          :desc "Grammar and spelling improvement" "g" 'ellama-improve-grammar
+          :desc "Conciseness improvement" "c" 'ellama-improve-conciseness
+          )
+         (:prefix ("m" . "Make")
+          :desc "Create list" "l" 'ellama-make-list
+          :desc "Create table" "t" 'ellama-make-table
+          :desc "Create format" "f" 'ellama-make-format
+          )
+         (:prefix ("a" . "Ask")
+          :desc "Ask about topic" "a" 'ellama-ask-about
+          :desc "Interactive chat" "i" 'ellama-chat
+          :desc "Ask current line" "l" 'ellama-ask-line
+          :desc "Ask selected text" "s" 'ellama-ask-selection
+          )
+         (:prefix ("t" . "Translate")
+          :desc "Translate text" "t" 'ellama-translate
+          :desc "Translate buffer" "b" 'ellama-translate-buffer
+          :desc "Enable translation" "e" 'ellama-chat-translation-enable
+          :desc "Disable translation" "d" 'ellama-chat-translation-disable
+          :desc "Text completion" "c" 'ellama-complete
+          )
+         (:prefix ("d" . "Define")
+          :desc "Define word" "w" 'ellama-define-word
+          )
+         (:prefix ("x" . "Context")
+          :desc "Add buffer to context" "b" 'ellama-context-add-buffer
+          :desc "Add file to context" "f" 'ellama-context-add-file
+          :desc "Add directory to context" "d" 'ellama-context-add-directory
+          :desc "Add selection to context" "s" 'ellama-context-add-selection
+          :desc "Add info node to context" "i" 'ellama-context-add-info-node
+          :desc "Reset context" "r" 'ellama-context-reset
+          )
+         (:prefix ("p" . "Provider")
+          :desc "Select provider" "s" 'ellama-provider-select)
+         )
+        )
+  )
