@@ -10,6 +10,7 @@ SPACESHIP_PROMPT_ORDER=(
 #  ruby          # Ruby section
 #  elixir        # Elixir section
 #  erlang         # Erlang section
+#  rust
   kubectl       # Kubectl context section
   exec_time     # Execution time
   line_sep      # Line break
@@ -21,6 +22,7 @@ SPACESHIP_PROMPT_ORDER=(
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_RPROMPT_ORDER=(
   time
+  battery
 )
 
 # ~/.zshrc
@@ -63,15 +65,20 @@ export KERL_BUILD_DOCS=yes
 
 alias p=fzm
 alias rechrome='open -n /Applications/Google\ Chrome.app'
-alias opensearch='/opt/homebrew/opt/opensearch/bin/opensearch'
 
-# aha autocomplete setup
-eval 
-AHA_AC_ZSH_SETUP_PATH=/Users/andi/Library/Caches/action-hero/autocomplete/zsh_setup && test -f $AHA_AC_ZSH_SETUP_PATH && source $AHA_AC_ZSH_SETUP_PATH;
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+allowcmd() {
+  xattr -d com.apple.quarantine $(which "$1")
+}
+
+allowapp() {
+  xattr -d com.apple.quarantine "/Applications/$1.app"
+}
+
+# Rainfrog
+alias rainfrogs='DB=$(psql -U postgres -At -c "SELECT datname FROM pg_database WHERE NOT datistemplate" | fzf) && rainfrog --url postgres://postgres:postgres@localhost:5432/$DB'
+
 export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-
+# export DOCKER_HOST=unix://$HOME/.local/share/containers/podman/machine/podman.sock
 . "$HOME/.cargo/env"
-eval "$(uv generate-shell-completion zsh)"

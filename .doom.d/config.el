@@ -166,7 +166,7 @@
   (require 'llm-ollama)
   (setopt ellama-coding-provider
           (make-llm-ollama
-           :chat-model "qwen2.5-coder:7b"
+           :chat-model "devstral:24b"
            :embedding-model "nomic-embed-text"
            :default-chat-non-standard-params '(("num_ctx" . 32768))))
   (setopt ellama-auto-scroll t)
@@ -244,3 +244,21 @@
          )
         )
   )
+
+
+(after! lsp-mode
+  (add-to-list 'lsp-language-id-configuration '(ruby-mode . "ruby"))
+
+  ;; Tell LSP to use ruby-lsp instead of solargraph
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection
+                     (lambda ()
+                       ;; Use `bundle exec` if ruby-lsp is in Gemfile
+                       (if (locate-dominating-file default-directory "Gemfile")
+                           '("bundle" "exec" "ruby-lsp")
+                         '("ruby-lsp"))))
+    :major-modes '(ruby-mode enh-ruby-mode)
+    :priority 1
+    :server-id 'ruby-lsp)))
+
