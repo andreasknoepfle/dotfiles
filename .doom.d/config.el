@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Andreas Knöpfle"
-      user-mail-address "andreas.knoepfle@gmail.com")
+  user-mail-address "andreas.knoepfle@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -22,7 +22,7 @@
 ;; accept. For example:
 
 (setq doom-font (font-spec :family "Fira Code" :size 17 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 17))
+  doom-variable-pitch-font (font-spec :family "Fira Sans" :size 17))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -44,23 +44,22 @@
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
+;; `with-eval-after-load' block, otherwise Doom's defaults may override your
+;; settings. E.g.
 ;;
-;;   (after! PACKAGE
+;;   (with-eval-after-load 'PACKAGE
 ;;     (setq x y))
 ;;
 ;; The exceptions to this rule:
 ;;
 ;;   - Setting file/directory variables (like `org-directory')
 ;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
+;;     package is loaded (see 'C-h v VARIABLE' to look them up).
 ;;   - Setting doom variables (which start with 'doom-' or '+').
 ;;
 ;; Here are some additional functions/macros that will help you configure Doom.
 ;;
 ;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
 ;; - `add-load-path!' for adding directories to the `load-path', relative to
 ;;   this file. Emacs searches the `load-path' when you load packages with
 ;;   `require' or `use-package'.
@@ -96,10 +95,10 @@
 
 ;; Disables auto formatting for ruby
 (setq +format-on-save-enabled-modes
-      '(not ruby-mode
-        js2-mode
-        rjsx-mode
-        js-mode))
+  '(not ruby-mode
+     js2-mode
+     rjsx-mode
+     js-mode))
 
 ;; Make Projectile create missing test files
 (after! projectile
@@ -111,7 +110,22 @@
 ;; Otherwise we get problems with FDSIZE (not needed since --with-unlimited-select of railwaycat build)
 (setq lsp-enable-file-watchers nil)
 
-(setq lsp-elixir-local-server-command "/Users/andi/bin/elixir-ls/language_server.sh")
+;; (setq lsp-elixir-local-server-command "/Users/andi/bin/elixir-ls/language_server.sh")
+
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-language-id-configuration
+    '(elixir-mode . "elixir"))
+
+  (lsp-register-client
+    (make-lsp-client
+      :new-connection (lsp-stdio-connection '("expert" "--stdio"))
+                                        ; :major-modes '(elixir-mode)
+      :priority -1
+      :activation-fn (lsp-activate-on "elixir")
+      :server-id 'expert))
+  )
+
+(add-hook 'elixir-mode-hook #'lsp)
 
 (with-eval-after-load 'flycheck
   (setq-default flycheck-disabled-checkers '(ruby-reek)))
@@ -125,13 +139,13 @@
   "ediff the current `init.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-user-dir "init.el")
-               (concat doom-emacs-dir "static/init.example.el")))
+    (concat doom-emacs-dir "static/init.example.el")))
 (define-key! help-map "di"   #'doom/ediff-init-and-example)
 (defun doom/ediff-config-and-example ()
   "ediff the current `config.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-user-dir "config.el")
-               (concat doom-emacs-dir "static/config.example.el")))
+    (concat doom-emacs-dir "static/config.example.el")))
 (define-key! help-map "dc"   #'doom/ediff-config-and-example)
 
 ;; Copy relative paths
@@ -140,7 +154,7 @@
 (defun +default/yank-buffer-relative-filename ()
   (interactive)
   (if-let (filename (or buffer-file-name (bound-and-true-p list-buffers-directory)))
-      (message (kill-new (file-relative-name filename (projectile-project-root))))
+    (message (kill-new (file-relative-name filename (projectile-project-root))))
     (error "Couldn't find relative filename in current buffer")))
 
 (map! :leader :desc "Yank buffer relative filename" "f Y" #'+default/yank-buffer-relative-filename)
@@ -165,17 +179,17 @@
   :init
   (require 'llm-ollama)
   (setopt ellama-coding-provider
-          (make-llm-ollama
-           :chat-model "devstral:24b"
-           :embedding-model "nomic-embed-text"
-           :default-chat-non-standard-params '(("num_ctx" . 32768))))
+    (make-llm-ollama
+      :chat-model "devstral:24b"
+      :embedding-model "nomic-embed-text"
+      :default-chat-non-standard-params '(("num_ctx" . 32768))))
   (setopt ellama-auto-scroll t)
   ;; Naming new sessions with llm
   (setopt ellama-naming-provider
-  	  (make-llm-ollama
-  	   :chat-model "llama3.2:3b"
-  	   :embedding-model "nomic-embed-text"
-  	   :default-chat-non-standard-params '(("stop" . ("\n")))))
+    (make-llm-ollama
+      :chat-model "llama3.2:3b"
+      :embedding-model "nomic-embed-text"
+      :default-chat-non-standard-params '(("stop" . ("\n")))))
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
   :config
   (setq ellama-sessions-directory "~/.config/ellama/.local/cache/ellama-sessions")
@@ -184,81 +198,95 @@
   ;; show ellama session id in header line in all buffers
   (ellama-session-header-line-global-mode +1)
   (map! :leader
-        (:prefix-map ("e" . "Ellama")
-         :desc "Open" "o" 'ellama
-         :desc "Write" "w" 'ellama-write
-         :desc "Proofread" "P" 'ellama-proofread
-         (:prefix ("c" . "Code")
-          :desc "Code complete" "c" 'ellama-code-complete
-          :desc "Add code" "a" 'ellama-code-add
-          :desc "Edit code" "e" 'ellama-code-edit
-          :desc "Improve code" "i" 'ellama-code-improve
-          :desc "Review code" "r" 'ellama-code-review
-          :desc "Commit message" "m" 'ellama-generate-commit-message
-          )
-         (:prefix ("s" . "Summarize")
-          :desc "Summarize" "s" 'ellama-summarize
-          :desc "Webpage summary" "w" 'ellama-summarize-webpage
-          :desc "Killring summary" "c" 'ellama-summarize-killring
-          :desc "Load session" "l" 'ellama-load-session
-          :desc "Rename session" "r" 'ellama-session-rename
-          :desc "Delete session" "d" 'ellama-session-delete
-          :desc "Activate session" "a" 'ellama-session-switch
-          )
-         (:prefix ("i" . "Improve")
-          :desc "Improve wording" "w" 'ellama-improve-wording
-          :desc "Grammar and spelling improvement" "g" 'ellama-improve-grammar
-          :desc "Conciseness improvement" "c" 'ellama-improve-conciseness
-          )
-         (:prefix ("m" . "Make")
-          :desc "Create list" "l" 'ellama-make-list
-          :desc "Create table" "t" 'ellama-make-table
-          :desc "Create format" "f" 'ellama-make-format
-          )
-         (:prefix ("a" . "Ask")
-          :desc "Ask about topic" "a" 'ellama-ask-about
-          :desc "Interactive chat" "i" 'ellama-chat
-          :desc "Ask current line" "l" 'ellama-ask-line
-          :desc "Ask selected text" "s" 'ellama-ask-selection
-          )
-         (:prefix ("t" . "Translate")
-          :desc "Translate text" "t" 'ellama-translate
-          :desc "Translate buffer" "b" 'ellama-translate-buffer
-          :desc "Enable translation" "e" 'ellama-chat-translation-enable
-          :desc "Disable translation" "d" 'ellama-chat-translation-disable
-          :desc "Text completion" "c" 'ellama-complete
-          )
-         (:prefix ("d" . "Define")
-          :desc "Define word" "w" 'ellama-define-word
-          )
-         (:prefix ("x" . "Context")
-          :desc "Add buffer to context" "b" 'ellama-context-add-buffer
-          :desc "Add file to context" "f" 'ellama-context-add-file
-          :desc "Add directory to context" "d" 'ellama-context-add-directory
-          :desc "Add selection to context" "s" 'ellama-context-add-selection
-          :desc "Add info node to context" "i" 'ellama-context-add-info-node
-          :desc "Reset context" "r" 'ellama-context-reset
-          )
-         (:prefix ("p" . "Provider")
-          :desc "Select provider" "s" 'ellama-provider-select)
-         )
+    (:prefix-map ("e" . "Ellama")
+      :desc "Open" "o" 'ellama
+      :desc "Write" "w" 'ellama-write
+      :desc "Proofread" "P" 'ellama-proofread
+      (:prefix ("c" . "Code")
+        :desc "Code complete" "c" 'ellama-code-complete
+        :desc "Add code" "a" 'ellama-code-add
+        :desc "Edit code" "e" 'ellama-code-edit
+        :desc "Improve code" "i" 'ellama-code-improve
+        :desc "Review code" "r" 'ellama-code-review
+        :desc "Commit message" "m" 'ellama-generate-commit-message
         )
+      (:prefix ("s" . "Summarize")
+        :desc "Summarize" "s" 'ellama-summarize
+        :desc "Webpage summary" "w" 'ellama-summarize-webpage
+        :desc "Killring summary" "c" 'ellama-summarize-killring
+        :desc "Load session" "l" 'ellama-load-session
+        :desc "Rename session" "r" 'ellama-session-rename
+        :desc "Delete session" "d" 'ellama-session-delete
+        :desc "Activate session" "a" 'ellama-session-switch
+        )
+      (:prefix ("i" . "Improve")
+        :desc "Improve wording" "w" 'ellama-improve-wording
+        :desc "Grammar and spelling improvement" "g" 'ellama-improve-grammar
+        :desc "Conciseness improvement" "c" 'ellama-improve-conciseness
+        )
+      (:prefix ("m" . "Make")
+        :desc "Create list" "l" 'ellama-make-list
+        :desc "Create table" "t" 'ellama-make-table
+        :desc "Create format" "f" 'ellama-make-format
+        )
+      (:prefix ("a" . "Ask")
+        :desc "Ask about topic" "a" 'ellama-ask-about
+        :desc "Interactive chat" "i" 'ellama-chat
+        :desc "Ask current line" "l" 'ellama-ask-line
+        :desc "Ask selected text" "s" 'ellama-ask-selection
+        )
+      (:prefix ("t" . "Translate")
+        :desc "Translate text" "t" 'ellama-translate
+        :desc "Translate buffer" "b" 'ellama-translate-buffer
+        :desc "Enable translation" "e" 'ellama-chat-translation-enable
+        :desc "Disable translation" "d" 'ellama-chat-translation-disable
+        :desc "Text completion" "c" 'ellama-complete
+        )
+      (:prefix ("d" . "Define")
+        :desc "Define word" "w" 'ellama-define-word
+        )
+      (:prefix ("x" . "Context")
+        :desc "Add buffer to context" "b" 'ellama-context-add-buffer
+        :desc "Add file to context" "f" 'ellama-context-add-file
+        :desc "Add directory to context" "d" 'ellama-context-add-directory
+        :desc "Add selection to context" "s" 'ellama-context-add-selection
+        :desc "Add info node to context" "i" 'ellama-context-add-info-node
+        :desc "Reset context" "r" 'ellama-context-reset
+        )
+      (:prefix ("p" . "Provider")
+        :desc "Select provider" "s" 'ellama-provider-select)
+      )
+    )
   )
 
 
 (after! lsp-mode
   (add-to-list 'lsp-language-id-configuration '(ruby-mode . "ruby"))
 
-  ;; Tell LSP to use ruby-lsp instead of solargraph
-  (lsp-register-client
-   (make-lsp-client
-    :new-connection (lsp-stdio-connection
-                     (lambda ()
-                       ;; Use `bundle exec` if ruby-lsp is in Gemfile
-                       (if (locate-dominating-file default-directory "Gemfile")
-                           '("bundle" "exec" "ruby-lsp")
-                         '("ruby-lsp"))))
-    :major-modes '(ruby-mode enh-ruby-mode)
-    :priority 1
-    :server-id 'ruby-lsp)))
+  ;; Tell LSP to use ruby-lsp instead of solargraph  ;; Tell LSP to use ruby-lsp directly (no bundle exec)
+  ;; (lsp-register-client
+  ;;  (make-lsp-client
+  ;;   :new-connection (lsp-stdio-connection '("ruby-lsp"))
+  ;;   :major-modes '(ruby-mode enh-ruby-mode)
+  ;;   :priority 1
+  ;;   :server-id 'ruby-lsp)))
 
+  (lsp-register-client
+    (make-lsp-client
+      :new-connection (lsp-stdio-connection '("ruby-lsp"))
+      :major-modes '(ruby-mode enh-ruby-mode)
+      :priority 1
+      :server-id 'ruby-lsp
+      :initialization-options (lambda ()
+                                '(:formatter "stree")))))
+
+;; Directly
+(require 'mise)
+
+;; enable globally
+(add-hook 'after-init-hook #'global-mise-mode)
+
+(define-derived-mode astro-mode web-mode "astro")
+(setq auto-mode-alist
+  (append '((".*\\.astro\\'" . astro-mode))
+    auto-mode-alist))

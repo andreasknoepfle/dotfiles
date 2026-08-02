@@ -5,3 +5,5 @@ TAGS
 .elixir_ls
 .#*
 .elixir-tools
+
+**/.claude/settings.local.json

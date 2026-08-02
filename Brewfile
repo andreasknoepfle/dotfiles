@@ -1,30 +1,30 @@
 # frozen_string_literal: true
 
-# asdf
-brew 'asdf'
-brew 'autoconf'
-brew 'automake'
-brew 'cmake'
-brew 'coreutils'
-brew 'curl'
-brew 'libtool'
-brew 'libyaml'
-brew 'openssl'
-brew 'readline'
-brew 'unixodbc'
-brew 'unzip'
+# mise
+brew 'mise'
+#brew 'autoconf'
+#brew 'automake'
+#brew 'cmake'
+#brew 'coreutils'
+#brew 'curl'
+#brew 'libtool'
+#brew 'libyaml'
+#brew 'openssl'
+#brew 'readline'
+#brew 'unixodbc'
+#brew 'unzip'
 
-# asdf-erlang
-brew 'fop'
-brew 'libxslt'
-brew 'openssl@1.1'
-brew 'wxwidgets'
+# erlang
+#brew 'fop'
+#brew 'libxslt'
+#brew 'openssl@1.1'
+#brew 'wxwidgets'
 
-# asdf-postgres
-brew 'gcc'
-brew 'ossp-uuid'
-brew 'readline'
-brew 'zlib'
+# postgres
+#brew 'gcc'
+#brew 'ossp-uuid'
+#brew 'readline'
+#brew 'zlib'
 
 # tools
 brew 'ack'
