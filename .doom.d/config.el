@@ -290,3 +290,28 @@
 (setq auto-mode-alist
   (append '((".*\\.astro\\'" . astro-mode))
     auto-mode-alist))
+
+(setenv "CC" "clang")
+(setenv "CXX" "clang++")
+
+(add-to-list 'exec-path "/Users/andi/go/bin")
+(setenv "PATH" (concat "/Users/andi/go/bin:" (getenv "PATH")))
+
+(add-to-list 'auto-mode-alist '("\\.templ\\'" . templ-ts-mode))
+(after! lsp-mode
+  (add-to-list 'lsp-language-id-configuration
+    '(templ-ts-mode . "templ"))
+
+  (lsp-register-client
+    (make-lsp-client
+      :new-connection
+      (lsp-stdio-connection
+        '("go" "tool" "templ" "lsp"))
+      :activation-fn (lsp-activate-on "templ")
+      :server-id 'templ-ls
+      :priority 1)))
+
+(after! treesit
+  (setq treesit-language-source-alist
+    '((go "https://github.com/tree-sitter/tree-sitter-go")
+       (templ "https://github.com/vrischmann/tree-sitter-templ"))))

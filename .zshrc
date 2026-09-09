@@ -82,3 +82,7 @@ export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # Created by `pipx` on 2026-03-18 08:40:12
 export PATH="$PATH:/Users/andi/.local/bin"
+
+# Go
+export GOPATH=$HOME/go  
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin

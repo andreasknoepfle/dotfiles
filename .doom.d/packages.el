@@ -48,3 +48,4 @@
 
 (package! ellama)
 (package! mise)
+(package! templ-ts-mode)
