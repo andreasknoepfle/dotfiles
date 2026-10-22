@@ -46,6 +46,8 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;; (package! builtin-package :recipe (:branch "develop"))
 
-(package! ellama)
+;; (package! ellama)
 (package! mise)
-(package! templ-ts-mode)
+;; (package! templ-ts-mode)
+(package! claude-code
+  :recipe (:host github :repo "stevemolitor/claude-code.el"))

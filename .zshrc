@@ -53,14 +53,8 @@ export LANG=en_US.UTF-8
 # Git commit signing
 export GPG_TTY=$(tty)
 
-# Erlang history
-export ERL_AFLAGS="-kernel shell_history enabled"
-export ERL_EPMD_ADDRESS=127.0.0.1
-
-export KERL_BUILD_DOCS=yes
-export POSTGRES_EXTRA_CONFIGURE_OPTIONS="--with-uuid=e2fs"
-
 alias p=fzm
+alias docker=podman
 alias rechrome='open -n /Applications/Google\ Chrome.app'
 
 allowcmd() {
@@ -71,18 +65,10 @@ allowapp() {
   xattr -d com.apple.quarantine "/Applications/$1.app"
 }
 
-# Rainfrog
-alias rainfrogs='DB=$(psql -U postgres -At -c "SELECT datname FROM pg_database WHERE NOT datistemplate" | fzf) && rainfrog --url postgres://postgres:postgres@localhost:5432/$DB'
-
-export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
-export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
-export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-# export DOCKER_HOST=unix://$HOME/.local/share/containers/podman/machine/podman.sock
-. "$HOME/.cargo/env"
-
-# Created by `pipx` on 2026-03-18 08:40:12
-export PATH="$PATH:/Users/andi/.local/bin"
-
 # Go
 export GOPATH=$HOME/go  
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+
+# Added by the Postman CLI installer
+export PATH='/Users/andi/.local/bin':"$PATH"
