@@ -182,6 +182,15 @@
         :desc "Manager" "l m" #'agent-shell-manager-toggle
         :desc "Delete killed sessions" "l d" #'agent-shell-manager-delete-killed))
 
+(use-package! agent-shell-attention
+  :after agent-shell
+  :config
+  (agent-shell-attention-mode 1)
+  (map! :leader
+        :desc "Jump to waiting shell" "l j" #'agent-shell-attention-jump
+        :desc "Jump to idle shell"    "l J" #'agent-shell-attention-jump-idle
+        :desc "Shell dashboard"       "l D" #'agent-shell-attention-dashboard))
+
 (use-package! agent-shell-macext
   :after agent-shell
   :hook (agent-shell-mode . agent-shell-macext-setup))
