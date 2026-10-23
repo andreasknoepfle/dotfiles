@@ -131,6 +131,9 @@
   (let ((case-fold-search (not iedit-case-sensitive)))
     (apply fn args)))
 
+(use-package! mise
+  :config (global-mise-mode))
+
 (advice-add #'evil-multiedit-match-and-next :around #'make-evil-multiedit-case-sensitive)
 (use-package! agent-shell
   :config
