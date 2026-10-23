@@ -191,6 +191,13 @@
         :desc "Jump to idle shell"    "l J" #'agent-shell-attention-jump-idle
         :desc "Shell dashboard"       "l D" #'agent-shell-attention-dashboard))
 
+(use-package! agent-shell-permission-transient
+  :after agent-shell
+  :config
+  (agent-shell-permission-transient-mode 1)
+  (map! :leader
+        :desc "Reopen permission menu" "l P" #'agent-shell-permission-transient-menu))
+
 (use-package! agent-shell-macext
   :after agent-shell
   :hook (agent-shell-mode . agent-shell-macext-setup))
