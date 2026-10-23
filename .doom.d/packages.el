@@ -56,5 +56,3 @@
   :recipe (:host github :repo "cxa/agent-shell-macext"))
 (package! agent-shell-attention
   :recipe (:host github :repo "ultronozm/agent-shell-attention.el"))
-(package! agent-shell-permission-transient
-  :recipe (:host github :repo "Jamie-Cui/agent-shell-permission-transient"))
