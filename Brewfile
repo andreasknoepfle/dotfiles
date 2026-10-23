@@ -25,7 +25,6 @@ brew 'pinentry-mac'
 # emacs doom
 brew 'd12frosted/emacs-plus/emacs-plus@31'
 brew 'aspell'
-brew 'editorconfig'
 brew 'tree-sitter'
 brew 'libvterm'
 brew 'libtool'

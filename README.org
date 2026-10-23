@@ -7,7 +7,6 @@ Feel free to grab & steal anything you like 🎯.
 - ~.doom.d/~ [[https://github.com/doomemacs/doomemacs][Doom Emacs]] configuration (including [[https://github.com/xenodium/agent-shell][agent-shell]] for Claude)
 - ~.wezterm.lua~ [[https://wezterm.org/][WezTerm]] terminal config
 - ~.vimrc~ Minimal vim config
-- ~.editorconfig~ [[https://editorconfig.org/][Global fallback .editorconfig]]
 
 *** Shell
 - ~.zshrc~ & ~.zshenv~ zsh config, with plugins managed by [[https://getantidote.github.io/][antidote]]
