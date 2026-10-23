@@ -31,6 +31,7 @@ brew 'libtool'
 brew 'cmake'
 brew 'markdown'
 brew 'gnuplot'
+brew 'terminal-notifier'
 
 # shell scripting
 brew 'shellcheck'
@@ -48,7 +49,7 @@ go 'github.com/x-motemen/gore/cmd/gore'
 go 'golang.org/x/tools/gopls'
 
 # node
-npm '@zed-industries/claude-agent-acp'
+npm '@agentclientprotocol/claude-agent-acp'
 
 # web
 brew 'hugo'
