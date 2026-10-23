@@ -167,6 +167,19 @@
         (agent-shell-make-environment-variables
          :inherit-env t
          "MCP_TIMEOUT" "5000"))
+  (defvar my/agent-shell-sidebar-wide-width "40%"
+    "Sidebar width when the frame has no other split.")
+  (defun my/agent-shell-sidebar-wide-when-alone (fn)
+    "Call FN with a wider sidebar width if no window besides the sidebar exists."
+    (let ((agent-shell-sidebar-width
+           (if (<= (length (seq-remove (lambda (w) (window-parameter w 'window-side))
+                                       (window-list nil 'no-mini)))
+                   1)
+               my/agent-shell-sidebar-wide-width
+             agent-shell-sidebar-width)))
+      (funcall fn)))
+  (advice-add #'agent-shell-sidebar--calculate-width
+              :around #'my/agent-shell-sidebar-wide-when-alone)
   (map! :leader
         :desc "Sidebar toggle"          "l l" #'agent-shell-sidebar-toggle
         :desc "Sidebar focus"           "l f" #'agent-shell-sidebar-toggle-focus
