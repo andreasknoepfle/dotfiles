@@ -1,9 +1,18 @@
 spaceship-prompt/spaceship-prompt
 ohmyzsh/ohmyzsh
+ohmyzsh/ohmyzsh path:plugins/aliases
+ohmyzsh/ohmyzsh path:plugins/brew
 ohmyzsh/ohmyzsh path:plugins/git
-ohmyzsh/ohmyzsh path:plugins/bundler
-ohmyzsh/ohmyzsh path:plugins/kubectl
+ohmyzsh/ohmyzsh path:plugins/gh
+ohmyzsh/ohmyzsh path:plugins/golang
 ohmyzsh/ohmyzsh path:plugins/gpg-agent
+ohmyzsh/ohmyzsh path:plugins/kubectl
 ohmyzsh/ohmyzsh path:plugins/mise
-ohmyzsh/ohmyzsh path:plugins/history-substring-search
+ohmyzsh/ohmyzsh path:plugins/podman
+ohmyzsh/ohmyzsh path:plugins/qrcode
+ohmyzsh/ohmyzsh path:plugins/web-search
+ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
 urbainvaes/fzf-marks
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+ohmyzsh/ohmyzsh path:plugins/history-substring-search
