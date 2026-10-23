@@ -182,4 +182,8 @@
         :desc "Manager" "l m" #'agent-shell-manager-toggle
         :desc "Delete killed sessions" "l d" #'agent-shell-manager-delete-killed))
 
+(use-package! agent-shell-macext
+  :after agent-shell
+  :hook (agent-shell-mode . agent-shell-macext-setup))
+
 (add-hook 'agent-shell-mode-hook #'doom-mark-buffer-as-real-h)

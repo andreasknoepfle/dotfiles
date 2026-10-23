@@ -52,3 +52,5 @@
   :recipe (:host github :repo "cmacrae/agent-shell-sidebar"))
 (package! agent-shell-manager
   :recipe (:host github :repo "jethrokuan/agent-shell-manager"))
+(package! agent-shell-macext
+  :recipe (:host github :repo "cxa/agent-shell-macext"))
