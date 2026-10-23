@@ -135,7 +135,22 @@
 (use-package! agent-shell
   :config
   (map! :leader
-    :desc "Agent shell (Claude)" "o c" #'agent-shell-anthropic-start-claude-code))
+    (:prefix ("l" . "agent shell")
+     :desc "Start Claude (new buffer)" "c" #'agent-shell-anthropic-start-claude-code
+     :desc "New shell"                 "n" #'agent-shell-new-shell
+     :desc "New worktree shell"        "w" #'agent-shell-new-worktree-shell
+     :desc "Toggle shell"              "t" #'agent-shell-toggle
+     :desc "Send dwim"                 "s" #'agent-shell-send-dwim
+     :desc "Send region to..."         "R" #'agent-shell-send-region-to
+     :desc "Send file"                 "a" #'agent-shell-send-file
+     :desc "Send file to..."           "A" #'agent-shell-send-file-to
+     :desc "Send screenshot"           "S" #'agent-shell-send-screenshot
+     :desc "Send clipboard image"      "i" #'agent-shell-send-clipboard-image
+     :desc "Compose prompt"            "p" #'agent-shell-prompt-compose
+     :desc "Set model"                 "o" #'agent-shell-set-session-model
+     :desc "Cycle mode"                "y" #'agent-shell-cycle-session-mode
+     :desc "Interrupt"                 "x" #'agent-shell-interrupt
+     :desc "Kill session buffer"       "k" #'kill-current-buffer)))
 
 (use-package! agent-shell-sidebar
   :after agent-shell
@@ -147,7 +162,17 @@
       :inherit-env t
       "MCP_TIMEOUT" "5000"))
   (map! :leader
-    :desc "Agent shell sidebar" "o C" #'agent-shell-sidebar-toggle
-    :desc "Agent shell sidebar focus" "o F" #'agent-shell-sidebar-toggle-focus))
+    :desc "Sidebar toggle"          "l l" #'agent-shell-sidebar-toggle
+    :desc "Sidebar focus"           "l f" #'agent-shell-sidebar-toggle-focus
+    :desc "Sidebar reset"           "l r" #'agent-shell-sidebar-reset
+    :desc "Sidebar change provider" "l P" #'agent-shell-sidebar-change-provider))
+
+(use-package! agent-shell-manager
+  :after agent-shell
+  :config
+  (setq agent-shell-manager-side 'bottom)
+  (map! :leader
+    :desc "Manager" "l m" #'agent-shell-manager-toggle
+    :desc "Delete killed sessions" "l d" #'agent-shell-manager-delete-killed))
 
 (add-hook 'agent-shell-mode-hook #'doom-mark-buffer-as-real-h)

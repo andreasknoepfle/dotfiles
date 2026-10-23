@@ -50,3 +50,5 @@
 (package! agent-shell)
 (package! agent-shell-sidebar
   :recipe (:host github :repo "cmacrae/agent-shell-sidebar"))
+(package! agent-shell-manager
+  :recipe (:host github :repo "jethrokuan/agent-shell-manager"))

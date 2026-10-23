@@ -2,8 +2,7 @@
 # git config --global core.excludesfile ~/path/to/me/.gitignore_global
 TAGS
 .DS_Store
-.elixir_ls
 .#*
-.elixir-tools
 
 **/.claude/settings.local.json
+.agent-shell/

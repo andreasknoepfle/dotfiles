@@ -1,77 +1,80 @@
 # frozen_string_literal: true
 
-# mise
-brew 'mise'
-#brew 'autoconf'
-#brew 'automake'
-#brew 'cmake'
-#brew 'coreutils'
-#brew 'curl'
-#brew 'libtool'
-#brew 'libyaml'
-#brew 'openssl'
-#brew 'readline'
-#brew 'unixodbc'
-#brew 'unzip'
+# taps
+tap 'd12frosted/emacs-plus', trusted: true
+tap 'mongodb/brew', trusted: true
 
-# erlang
-#brew 'fop'
-#brew 'libxslt'
-#brew 'openssl@1.1'
-#brew 'wxwidgets'
-
-# postgres
-#brew 'gcc'
-#brew 'ossp-uuid'
-#brew 'readline'
-#brew 'zlib'
-
-# tools
-#brew 'ack'
+# shell & core tools
 brew 'antidote'
 brew 'bash'
-#brew 'fswatch'
+brew 'zsh'
 brew 'fzf'
+brew 'fd'
+brew 'grep'
+brew 'ripgrep'
+brew 'mise'
+
+# git & github
 brew 'gh'
 brew 'git'
-#brew 'git-crypt'
-brew 'go'
-#brew 'graphviz'
-#brew 'imagemagick'
-#brew 'jq'
-#brew 'make'
-#brew 'pinentry'
-#brew 'pinentry-mac'
-#brew 'plantuml'
-#brew 'shellcheck'
-#brew 'task'
-#brew 'tmux'
-#brew 'vim'
-#brew 'watch'
-#brew 'yarn'
-brew 'zsh'
+
+# gpg
+brew 'gnupg'
+brew 'pinentry-mac'
 
 # emacs doom
-#
-tap 'd12frosted/emacs-plus'
-brew 'emacs-plus'
+brew 'd12frosted/emacs-plus/emacs-plus@31'
 brew 'aspell'
-brew 'grep'
 brew 'editorconfig'
-brew 'ripgrep'
-brew 'fd'
 brew 'tree-sitter'
+brew 'libvterm'
+brew 'libtool'
+brew 'cmake'
+brew 'markdown'
+brew 'gnuplot'
 
-# Handy tools
-#brew 'gource'
-#brew 'dos2unix'
-#brew 'wget'
-#brew 'gpg2'
-#brew 'dialog'
-#brew 'rainfrog'
+# shell scripting
+brew 'shellcheck'
+brew 'shfmt'
 
-# cask
+# go
+brew 'go'
+go 'github.com/air-verse/air'
+go 'github.com/cweill/gotests/gotests'
+go 'github.com/fatih/gomodifytags'
+go 'github.com/go-delve/delve/cmd/dlv'
+go 'github.com/jeduden/mdsmith/cmd/mdsmith'
+go 'github.com/melkeydev/go-blueprint'
+go 'github.com/x-motemen/gore/cmd/gore'
+go 'golang.org/x/tools/gopls'
+
+# node
+npm '@zed-industries/claude-agent-acp'
+
+# web
+brew 'hugo'
+
+# containers
+brew 'podman'
+brew 'podman-compose'
+cask 'podman-desktop'
+
+# mongodb
+brew 'mongodb/brew/mongodb-database-tools'
+brew 'mongosh'
+cask 'mongodb-compass'
+
+# api tools
+cask 'bruno'
+cask 'postman'
+
+# apps
+cask 'github'
+cask 'notion'
+cask 'notunes'
 cask 'rectangle'
+cask 'wezterm'
 
+# fonts
 cask 'font-fira-code'
 cask 'font-fira-sans'
