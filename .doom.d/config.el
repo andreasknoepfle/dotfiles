@@ -150,7 +150,10 @@
      :desc "Set model"                 "o" #'agent-shell-set-session-model
      :desc "Cycle mode"                "y" #'agent-shell-cycle-session-mode
      :desc "Interrupt"                 "x" #'agent-shell-interrupt
-     :desc "Kill session buffer"       "k" #'kill-current-buffer)))
+     :desc "Kill session buffer"       "k" #'kill-current-buffer
+     :desc "Restart session"           "q" #'agent-shell-restart
+     :desc "Steer running turn"        "u" #'agent-shell-prompt-steer
+     :desc "Queue prompt"              "Q" #'agent-shell-prompt-queue)))
 
 (use-package! agent-shell-sidebar
   :after agent-shell
