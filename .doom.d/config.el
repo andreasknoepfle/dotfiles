@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Andreas Knöpfle"
-  user-mail-address "andreas.knoepfle@gmail.com")
+      user-mail-address "andreas.knoepfle@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -22,7 +22,7 @@
 ;; accept. For example:
 
 (setq doom-font (font-spec :family "Fira Code" :size 17 :weight 'semi-light)
-  doom-variable-pitch-font (font-spec :family "Fira Sans" :size 17))
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 17))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -91,10 +91,10 @@
 
 ;; Disables auto formatting for ruby
 (setq +format-on-save-enabled-modes
-  '(not ruby-mode
-     js2-mode
-     rjsx-mode
-     js-mode))
+      '(not ruby-mode
+        js2-mode
+        rjsx-mode
+        js-mode))
 
 ;; Get nice diffs for dooms example config files
 ;; for comparison on what changed after an update
@@ -105,13 +105,13 @@
   "ediff the current `init.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-user-dir "init.el")
-    (concat doom-emacs-dir "static/init.example.el")))
+               (concat doom-emacs-dir "static/init.example.el")))
 (define-key! help-map "di"   #'doom/ediff-init-and-example)
 (defun doom/ediff-config-and-example ()
   "ediff the current `config.el' with the example in doom-emacs-dir"
   (interactive)
   (ediff-files (concat doom-user-dir "config.el")
-    (concat doom-emacs-dir "static/config.example.el")))
+               (concat doom-emacs-dir "static/config.example.el")))
 (define-key! help-map "dc"   #'doom/ediff-config-and-example)
 
 ;; Copy relative paths
@@ -120,7 +120,7 @@
 (defun +default/yank-buffer-relative-filename ()
   (interactive)
   (if-let (filename (or buffer-file-name (bound-and-true-p list-buffers-directory)))
-    (message (kill-new (file-relative-name filename (projectile-project-root))))
+      (message (kill-new (file-relative-name filename (projectile-project-root))))
     (error "Couldn't find relative filename in current buffer")))
 
 (map! :leader :desc "Yank buffer relative filename" "f Y" #'+default/yank-buffer-relative-filename)
@@ -135,47 +135,48 @@
 (use-package! agent-shell
   :config
   (map! :leader
-    (:prefix ("l" . "agent shell")
-     :desc "Start Claude (new buffer)" "c" #'agent-shell-anthropic-start-claude-code
-     :desc "New shell"                 "n" #'agent-shell-new-shell
-     :desc "New worktree shell"        "w" #'agent-shell-new-worktree-shell
-     :desc "Toggle shell"              "t" #'agent-shell-toggle
-     :desc "Send dwim"                 "s" #'agent-shell-send-dwim
-     :desc "Send region to..."         "R" #'agent-shell-send-region-to
-     :desc "Send file"                 "a" #'agent-shell-send-file
-     :desc "Send file to..."           "A" #'agent-shell-send-file-to
-     :desc "Send screenshot"           "S" #'agent-shell-send-screenshot
-     :desc "Send clipboard image"      "i" #'agent-shell-send-clipboard-image
-     :desc "Compose prompt"            "p" #'agent-shell-prompt-compose
-     :desc "Set model"                 "o" #'agent-shell-set-session-model
-     :desc "Cycle mode"                "y" #'agent-shell-cycle-session-mode
-     :desc "Interrupt"                 "x" #'agent-shell-interrupt
-     :desc "Kill session buffer"       "k" #'kill-current-buffer
-     :desc "Restart session"           "q" #'agent-shell-restart
-     :desc "Steer running turn"        "u" #'agent-shell-prompt-steer
-     :desc "Queue prompt"              "Q" #'agent-shell-prompt-queue)))
+        (:prefix ("l" . "agent shell")
+         :desc "Start Claude (new buffer)" "c" #'agent-shell-anthropic-start-claude-code
+         :desc "New shell"                 "n" #'agent-shell-new-shell
+         :desc "New worktree shell"        "w" #'agent-shell-new-worktree-shell
+         :desc "Toggle shell"              "t" #'agent-shell-toggle
+         :desc "Send dwim"                 "s" #'agent-shell-send-dwim
+         :desc "Send region to..."         "R" #'agent-shell-send-region-to
+         :desc "Send file"                 "a" #'agent-shell-send-file
+         :desc "Send file to..."           "A" #'agent-shell-send-file-to
+         :desc "Send screenshot"           "S" #'agent-shell-send-screenshot
+         :desc "Send clipboard image"      "i" #'agent-shell-send-clipboard-image
+         :desc "Compose prompt"            "p" #'agent-shell-prompt-compose
+         :desc "Set model"                 "o" #'agent-shell-set-session-model
+         :desc "Cycle mode"                "y" #'agent-shell-cycle-session-mode
+         :desc "Interrupt"                 "x" #'agent-shell-interrupt
+         :desc "Kill session buffer"       "k" #'kill-current-buffer
+         :desc "Queue prompt"              "q" #'agent-shell-prompt-queue
+         :desc "Steer running turn"        "u" #'agent-shell-prompt-steer
+         :desc "Restart session"           "r" #'agent-shell-restart)))
 
 (use-package! agent-shell-sidebar
   :after agent-shell
   :config
   (setq agent-shell-sidebar-default-config
-    (agent-shell-anthropic-make-claude-code-config))
+        (agent-shell-anthropic-make-claude-code-config))
   (setq agent-shell-anthropic-claude-environment
-    (agent-shell-make-environment-variables
-      :inherit-env t
-      "MCP_TIMEOUT" "5000"))
+        (agent-shell-make-environment-variables
+         :inherit-env t
+         "MCP_TIMEOUT" "5000"))
   (map! :leader
-    :desc "Sidebar toggle"          "l l" #'agent-shell-sidebar-toggle
-    :desc "Sidebar focus"           "l f" #'agent-shell-sidebar-toggle-focus
-    :desc "Sidebar reset"           "l r" #'agent-shell-sidebar-reset
-    :desc "Sidebar change provider" "l P" #'agent-shell-sidebar-change-provider))
+        :desc "Sidebar toggle"          "l l" #'agent-shell-sidebar-toggle
+        :desc "Sidebar focus"           "l f" #'agent-shell-sidebar-toggle-focus
+        (:prefix ("l L" . "sidebar actions")
+         :desc "Reset"           "r" #'agent-shell-sidebar-reset
+         :desc "Change provider" "p" #'agent-shell-sidebar-change-provider)))
 
 (use-package! agent-shell-manager
   :after agent-shell
   :config
   (setq agent-shell-manager-side 'bottom)
   (map! :leader
-    :desc "Manager" "l m" #'agent-shell-manager-toggle
-    :desc "Delete killed sessions" "l d" #'agent-shell-manager-delete-killed))
+        :desc "Manager" "l m" #'agent-shell-manager-toggle
+        :desc "Delete killed sessions" "l d" #'agent-shell-manager-delete-killed))
 
 (add-hook 'agent-shell-mode-hook #'doom-mark-buffer-as-real-h)
