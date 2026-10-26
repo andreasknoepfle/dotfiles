@@ -3,6 +3,7 @@
 # taps
 tap 'd12frosted/emacs-plus', trusted: true
 tap 'mongodb/brew', trusted: true
+tap 'hashicorp/tap', trusted: true
 
 # shell & core tools
 brew 'antidote'
@@ -78,3 +79,7 @@ cask 'wezterm'
 # fonts
 cask 'font-fira-code'
 cask 'font-fira-sans'
+
+# cloud cli
+brew 'hashicorp/tap/terraform'
+cask 'gcloud-cli'

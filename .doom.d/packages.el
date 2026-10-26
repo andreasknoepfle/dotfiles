@@ -56,3 +56,6 @@
   :recipe (:host github :repo "cxa/agent-shell-macext"))
 (package! agent-shell-attention
   :recipe (:host github :repo "ultronozm/agent-shell-attention.el"))
+(package! agent-recall)
+(package! agent-shell-gc
+  :recipe (:host github :repo "izeigerman/agent-shell-gc"))

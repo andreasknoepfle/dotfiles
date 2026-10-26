@@ -204,6 +204,34 @@
         :desc "Jump to idle shell"    "l J" #'agent-shell-attention-jump-idle
         :desc "Shell dashboard"       "l D" #'agent-shell-attention-dashboard))
 
+(use-package! agent-recall
+  :after agent-shell
+  :hook (agent-shell-mode . agent-recall-track-sessions)
+  :config
+  (setq agent-recall-search-paths '("~/repos")
+        agent-recall-max-depth 4
+        agent-recall-search-function 'consult-ripgrep
+        agent-recall-browse-sort 'modified-desc)
+  (map! :leader
+        :desc "Browse transcripts"         "l b" #'agent-recall-browse
+        :desc "Browse project transcripts" "l B" #'agent-recall-browse-project
+        :desc "Search transcripts"         "l g" #'agent-recall-consult-search
+        :desc "Resume past session"        "l h" #'agent-recall-resume))
+
+(setq agent-shell-show-cost-indicator t)
+
+(use-package! agent-shell-gc
+  :after agent-shell
+  :config
+  ;; Kill sessions idle for 8 hours.  Busy, visible, pinned shells and shells with
+  ;; unsubmitted prompt text are never collected; transcripts stay resumable.
+  (setq agent-shell-gc-idle-session-ttl (* 8 60 60)
+        agent-shell-gc-store-file (expand-file-name "agent-shell-gc/state.eld" doom-cache-dir))
+  (agent-shell-gc-mode 1)
+  (map! :leader
+        :desc "Pin / unpin session (gc)" "l K" #'agent-shell-gc-toggle-keep
+        :desc "GC session list"          "l G" #'agent-shell-gc-list))
+
 (use-package! agent-shell-macext
   :after agent-shell
   :hook (agent-shell-mode . agent-shell-macext-setup))
