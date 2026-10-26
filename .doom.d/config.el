@@ -167,6 +167,7 @@
         (agent-shell-make-environment-variables
          :inherit-env t
          "MCP_TIMEOUT" "5000"))
+  (setq agent-shell-sidebar-minimum-width 70)
   (defvar my/agent-shell-sidebar-wide-width "40%"
     "Sidebar width when the frame has no other split.")
   (defun my/agent-shell-sidebar-wide-when-alone (fn)
