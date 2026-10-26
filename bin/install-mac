@@ -26,5 +26,7 @@ ln -fs $DOTFILES_ROOT/.zshrc ~/.zshrc
 ln -fs $DOTFILES_ROOT/.zshenv ~/.zshenv
 ln -fs $DOTFILES_ROOT/.zsh_plugins.txt ~/.zsh_plugins.txt
 ln -fs $DOTFILES_ROOT/.wezterm.lua ~/.wezterm.lua
+mkdir -p ~/.claude/skills
+ln -fs $DOTFILES_ROOT/claude/skills/rename-agent-shell-buffer ~/.claude/skills/rename-agent-shell-buffer
 
 echo "Done"
