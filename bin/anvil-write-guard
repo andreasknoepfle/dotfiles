@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Claude Code PreToolUse hook: auto-allow Anvil write tools only inside the open project.
+# Allowed when every target path resolves (symlinks included) to the git work tree of
+# the session's cwd, outside .git/, and is not git-ignored. Anything else, or any
+# error, falls back to the normal permission prompt. Reads are not guarded.
+
+decide() {
+	jq -n --arg d "$1" --arg r "anvil-write-guard: $2" \
+		'{hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:$d,permissionDecisionReason:$r}}'
+	exit 0
+}
+
+# Resolve symlinks; for a not-yet-existing file, resolve its directory instead.
+resolve() {
+	if [ -e "$1" ] || [ -L "$1" ]; then
+		realpath "$1"
+	else
+		dir=$(cd "$(dirname "$1")" 2>/dev/null && pwd -P) || return 1
+		echo "$dir/$(basename "$1")"
+	fi
+}
+
+input=$(cat)
+cwd=$(jq -r '.cwd // empty' <<<"$input") || decide ask "cannot parse hook input"
+paths=$(jq -r '.tool_input | [.path?, .file?, ((.["file-ops-json"]? // "[]") | fromjson | .[].path)] | .[] | select(. != null)' <<<"$input" 2>/dev/null) ||
+	decide ask "cannot parse tool input"
+[ -n "$paths" ] || decide ask "no target path found"
+
+top=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || decide ask "$cwd is not in a git repository"
+root=$(realpath "$top") || decide ask "cannot resolve $top"
+
+while IFS= read -r p; do
+	case "$p" in /*) ;; *) decide ask "relative path $p" ;; esac
+	real=$(resolve "$p") || decide ask "cannot resolve $p"
+	case "$real" in "$root"/*) ;; *) decide ask "$real is outside $root" ;; esac
+	rel=${real#"$root"/}
+	case "$rel" in .git | .git/*) decide ask "$rel is inside .git" ;; esac
+	git -C "$root" check-ignore -q -- "$rel" && decide ask "$rel is git-ignored"
+done <<<"$paths"
+
+decide allow "all paths inside git project $root"

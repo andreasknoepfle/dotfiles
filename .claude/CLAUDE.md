@@ -16,7 +16,17 @@ Do not fall back to the built-in Read/Edit/Write just because the
 schemas are not loaded yet. If the Anvil call fails (e.g. Emacs is not
 running), say so and then use the built-ins.
 
-- `file-batch` — 3+ edits to the same file (collapse into one call)
+- `file-batch` — 3+ edits to the same file (collapse into one call).
+  `operations` is a JSON string of objects keyed by `op` (not `type`):
+  `[{"op":"replace","old":"…","new":"…"}]`. Ops: `replace`,
+  `replace-regexp`, `insert-at-line`, `delete-lines`, `append`, `prepend`.
+  Exact keys per op (wrong keys fail with a nil type error, and the
+  batch is atomic so nothing is written):
+  - `replace`: `old`, `new`
+  - `replace-regexp`: `pattern`, `replacement`
+  - `insert-at-line`: `line`, `content`
+  - `delete-lines`: `start`, `end` (not `start-line`/`end-line`)
+  - `append` / `prepend`: `content` (not `text`)
 - `file-replace-string` / `file-replace-regexp` —
   pinpoint replacement; no need to read the whole file first
 - `file-insert-at-line` / `file-delete-lines` /

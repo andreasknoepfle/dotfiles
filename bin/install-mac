@@ -37,5 +37,6 @@ claude mcp remove anvil-emacs-eval --scope user 2>/dev/null || true
 claude mcp add-json --scope user anvil-emacs-eval \
 	"{\"type\":\"stdio\",\"command\":\"$DOTFILES_ROOT/bin/anvil-mcp\",\"args\":[\"emacs-eval\"]}"
 ln -fs $DOTFILES_ROOT/claude/skills/rename-agent-shell-buffer ~/.claude/skills/rename-agent-shell-buffer
-
+claude plugin marketplace add xenodium/emacs-skills
+claude plugin install emacs-skills@xenodium-emacs-skills
 echo "Done"

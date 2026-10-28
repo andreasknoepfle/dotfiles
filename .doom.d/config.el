@@ -309,13 +309,14 @@ Returning nil lets ghub fall back to its normal auth-source lookup."
 
 ;; anvil: MCP server running inside Emacs.  It is registered with Claude Code at
 ;; user scope (see bin/anvil-mcp and bin/install-mac), so agent-shell and terminal
-;; sessions both get it.  The stdio bridge calls `my/anvil-start' through emacsclient
-;; when a session starts.  No stop function: all sessions share this Emacs, so one
-;; ending must not disable anvil.
-(defun my/anvil-start ()
-  "Enable anvil and start its MCP server unless they are already running."
-  (unless (bound-and-true-p anvil--enabled)
-    (anvil-enable))
-  (unless (anvil-server-running-p)
-    (anvil-server-start))
-  "anvil ready")
+;; sessions both get it.  Started with Emacs; no stop function, since all sessions
+;; share this Emacs.  Use `anvil-disable' / `anvil-server-stop' by hand if needed.
+(add-hook 'doom-after-init-hook
+          (lambda ()
+            (anvil-enable)
+            ;; Its server-execute advice turns magit's COMMIT_EDITMSG
+            ;; emacsclient into "server-execute aborted by non-local exit",
+            ;; so commits fail.
+            (advice-remove 'server-execute
+                           #'anvil-eval--server-execute-cleanup-advice)
+            (anvil-server-start)))
