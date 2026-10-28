@@ -27,6 +27,15 @@ ln -fs $DOTFILES_ROOT/.zshenv ~/.zshenv
 ln -fs $DOTFILES_ROOT/.zsh_plugins.txt ~/.zsh_plugins.txt
 ln -fs $DOTFILES_ROOT/.wezterm.lua ~/.wezterm.lua
 mkdir -p ~/.claude/skills
+ln -fs $DOTFILES_ROOT/.claude/CLAUDE.md ~/.claude/CLAUDE.md
+# anvil (Emacs MCP server) for every Claude Code session; it registers its tools under
+# two server-ids, hence two entries (see bin/anvil-mcp).
+claude mcp remove anvil --scope user 2>/dev/null || true
+claude mcp add-json --scope user anvil \
+	"{\"type\":\"stdio\",\"command\":\"$DOTFILES_ROOT/bin/anvil-mcp\"}"
+claude mcp remove anvil-emacs-eval --scope user 2>/dev/null || true
+claude mcp add-json --scope user anvil-emacs-eval \
+	"{\"type\":\"stdio\",\"command\":\"$DOTFILES_ROOT/bin/anvil-mcp\",\"args\":[\"emacs-eval\"]}"
 ln -fs $DOTFILES_ROOT/claude/skills/rename-agent-shell-buffer ~/.claude/skills/rename-agent-shell-buffer
 
 echo "Done"

@@ -1,28 +1,28 @@
 set -o PROMPT_SUBST
 
 SPACESHIP_PROMPT_ORDER=(
-  user # Username section
-  dir  # Current directory section
-  host # Hostname section
-  git  # Git section (git_branch + git_status)
-  #  package       # Package version
-  #  node          # Node.js section
-  #  ruby          # Ruby section
-  #  elixir        # Elixir section
-  #  erlang         # Erlang section
-  #  rust
-  kubectl   # Kubectl context section
-  exec_time # Execution time
-  line_sep  # Line break
-  jobs      # Background jobs indicator
-  exit_code # Exit code section
-  char      # Prompt character
+	user # Username section
+	dir  # Current directory section
+	host # Hostname section
+	git  # Git section (git_branch + git_status)
+	#  package       # Package version
+	#  node          # Node.js section
+	#  ruby          # Ruby section
+	#  elixir        # Elixir section
+	#  erlang         # Erlang section
+	#  rust
+	kubectl   # Kubectl context section
+	exec_time # Execution time
+	line_sep  # Line break
+	jobs      # Background jobs indicator
+	exit_code # Exit code section
+	char      # Prompt character
 )
 
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_RPROMPT_ORDER=(
-  time
-  battery
+	time
+	battery
 )
 
 # ~/.zshrc
@@ -34,17 +34,17 @@ antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
 # fuzzy git checkout branch
 fgco() {
-  local branches branch
-  branches=$(git branch -vv) &&
-    branch=$(echo "$branches" | fzf +m --query="$1") &&
-    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+	local branches branch
+	branches=$(git branch -vv) &&
+		branch=$(echo "$branches" | fzf +m --query="$1") &&
+		git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
 # Default editor
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+	export EDITOR='vim'
 else
-  export EDITOR='vim'
+	export EDITOR='vim'
 fi
 
 # Set language
@@ -58,17 +58,26 @@ alias docker=podman
 alias rechrome='open -n /Applications/Google\ Chrome.app'
 
 allowcmd() {
-  xattr -d com.apple.quarantine $(which "$1")
+	xattr -d com.apple.quarantine $(which "$1")
 }
 
 allowapp() {
-  xattr -d com.apple.quarantine "/Applications/$1.app"
+	xattr -d com.apple.quarantine "/Applications/$1.app"
 }
 
 # Go
-export GOPATH=$HOME/go  
+export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
 
 # Added by the Postman CLI installer
 export PATH='/Users/andi/.local/bin':"$PATH"
+
+if command -v podman >/dev/null 2>&1; then
+	podman machine list --format '{{.Running}}' 2>/dev/null | grep -q true || podman machine start >/dev/null 2>&1
+fi
+
+if command -v podman >/dev/null 2>&1; then
+	_podman_sock="$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}' 2>/dev/null)"
+	[ -n "$_podman_sock" ] && export DOCKER_HOST="unix://${_podman_sock}"
+	unset _podman_sock
+fi

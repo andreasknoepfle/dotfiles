@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Stdio MCP bridge to the anvil server running inside Emacs.
+# Asks the running Emacs where anvil is installed, so Emacs upgrades and straight
+# rebuilds don't leave a stale path in the Claude Code config.
+#
+# Anvil registers its tools under two server-ids, so it needs two MCP entries:
+#   anvil-mcp              eval tools (server-id "anvil"); starts anvil in Emacs
+#   anvil-mcp emacs-eval   file, org, git, data tools (server-id "emacs-eval")
+set -eu
+
+server_id=${1:-anvil}
+lib=$(emacsclient --eval '(file-name-directory (locate-library "anvil-server"))' | tr -d '"')
+
+args=("--server-id=${server_id}")
+[ "$server_id" = anvil ] && args+=("--init-function=my/anvil-start")
+exec bash "${lib}anvil-stdio.sh" "${args[@]}"

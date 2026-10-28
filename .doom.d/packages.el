@@ -54,8 +54,9 @@
   :recipe (:host github :repo "jethrokuan/agent-shell-manager"))
 (package! agent-shell-macext
   :recipe (:host github :repo "cxa/agent-shell-macext"))
-(package! agent-shell-attention
-  :recipe (:host github :repo "ultronozm/agent-shell-attention.el"))
 (package! agent-recall)
 (package! agent-shell-gc
   :recipe (:host github :repo "izeigerman/agent-shell-gc"))
+(package! anvil
+  :recipe (:host github :repo "zawatton/anvil.el" :branch "v1.4.1"
+           :files (:defaults "anvil-stdio.sh")))
